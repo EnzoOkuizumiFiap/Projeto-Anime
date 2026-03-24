@@ -9,8 +9,8 @@ import java.util.List;
 @AllArgsConstructor
 public class Episodio {
     private Long id;
-    private String title;
-    private String description;
-    private String duration;
-    private List<Personagem> chars;
+    private String titulo;
+    private String descricao;
+    private String duracao;
+    private List<Personagem> personagens;
 }
