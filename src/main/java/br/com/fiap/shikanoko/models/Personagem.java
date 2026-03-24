@@ -8,6 +8,6 @@ import lombok.Data;
 public class Personagem {
     private Long id;
     private String nome;
-    private String descricao;
-    private Boolean isCervo;
+    private String description;
+    private Boolean isDeer;
 }
