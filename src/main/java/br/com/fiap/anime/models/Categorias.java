@@ -1,4 +1,4 @@
-package br.com.fiap.shikanoko.models;
+package br.com.fiap.anime.models;
 
 public enum Categorias {
     Comédia,

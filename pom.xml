@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>br.com.fiap</groupId>
-    <artifactId>Shikanoko</artifactId>
+    <artifactId>Anime</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Shikanoko</name>
-    <description>Shikanoko</description>
+    <name>Anime</name>
+    <description>Projeto sobre site "pirata" de Anime</description>
     <url/>
     <licenses>
         <license/>
