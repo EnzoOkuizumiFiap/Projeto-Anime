@@ -1,4 +1,7 @@
 package br.com.fiap.anime.repositories;
 
-public class PersonagemRepository {
+import br.com.fiap.anime.models.Anime;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PersonagemRepository extends JpaRepository<Anime, Long> {
 }
