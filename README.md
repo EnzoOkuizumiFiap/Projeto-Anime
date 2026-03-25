@@ -1,1 +1,1 @@
-# Checkpoint1-ProjetoDiamanteShikanoko
+# Checkpoint 1 - Projeto Anime
