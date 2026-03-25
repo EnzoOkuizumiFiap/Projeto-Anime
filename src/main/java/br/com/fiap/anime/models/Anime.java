@@ -14,6 +14,6 @@ public class Anime {
     private String descricao;
     private List<Episodio> episodios;
     private LocalDate lancamento;
-    private String categoria;
+    private List<Categorias> categoria;
     private String diretor;
 }
