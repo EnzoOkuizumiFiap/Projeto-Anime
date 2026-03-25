@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>br.com.fiap</groupId>
-    <artifactId>Anime</artifactId>
+    <artifactId>Projeto-Anime</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>Anime</name>
     <description>Projeto sobre site "pirata" de Anime</description>
