@@ -1,15 +1,21 @@
 package br.com.fiap.anime.models;
 
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-@AllArgsConstructor
+@Entity
 public class Personagem {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String nome;
     private String descricao;
-    private List<String> caracteristicas;
+
+    @ManyToOne
+    @JoinColumn(name = "anime_id")
+    private Anime anime;
 }

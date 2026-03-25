@@ -1,18 +1,24 @@
 package br.com.fiap.anime.models;
 
-import lombok.AllArgsConstructor;
+import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Data
-@AllArgsConstructor
+@Entity
 public class Anime {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String titulo;
     private String descricao;
     private LocalDate lancamento;
+
     private List<Categoria> categoria;
+
+    @OneToMany(mappedBy = "anime", cascade = CascadeType.ALL)
     private List<Personagem> personagens;
 }

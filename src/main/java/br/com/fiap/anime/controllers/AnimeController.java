@@ -12,6 +12,9 @@ import java.util.List;
 @RestController
 @RequestMapping("animes")
 public class AnimeController {
+
+    public record HealthStatus(String status, String message) {}
+
     @Autowired
     private AnimeService service;
 
