@@ -1,8 +1,8 @@
 package br.com.fiap.anime.models;
 
-public enum Categorias {
-    Comédia,
-    Ação,
+public enum Categoria {
+    Comedia,
+    Acao,
     Romance,
     Drama,
     SciFi,

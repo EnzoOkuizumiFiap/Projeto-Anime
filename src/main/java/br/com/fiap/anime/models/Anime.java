@@ -13,6 +13,6 @@ public class Anime {
     private String titulo;
     private String descricao;
     private LocalDate lancamento;
-    private List<Categorias> categoria;
+    private List<Categoria> categoria;
     private List<Personagem> personagens;
 }
