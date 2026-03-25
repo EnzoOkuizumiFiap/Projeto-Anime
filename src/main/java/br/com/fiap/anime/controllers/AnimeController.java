@@ -32,7 +32,7 @@ public class AnimeController {
 
     @PutMapping("{id}")
     public ResponseEntity<Anime> updateAnime(@PathVariable Long id, @RequestBody Anime anime) {
-        return ResponseEntity.ok(service.updateAnime(id, Anime);
+        return ResponseEntity.ok(service.updateAnime(id, anime));
     }
 
     @DeleteMapping("{id}")
