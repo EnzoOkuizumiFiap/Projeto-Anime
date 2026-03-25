@@ -11,32 +11,32 @@ import java.util.List;
 
 @Service
 public class AnimeService {
- @Autowired
- public AnimeRepository repository;
+    @Autowired
+    private AnimeRepository animeRepository;
 
- public List<Anime> getAllAnimes() {
-  return repository.findAll();
- }
+    public List<Anime> getAllAnimes() {
+        return animeRepository.findAll();
+    }
 
-  public Anime getAnimeById(Long id) {
-   return findAnimeById(id);
-  }
+    public Anime getAnimeById(Long id) {
+        return findAnimeById(id);
+    }
 
- public Anime addAnime(Anime anime) {
-  return repository.save(anime);
- }
+    public Anime addAnime(Anime anime) {
+        return animeRepository.save(anime);
+    }
 
- public Anime updateAnime(Long id, Anime newAnime) {
-  newAnime.setId(findAnimeById(id).getId());
-  return repository.save(newAnime);
- }
+    public Anime updateAnime(Long id, Anime newAnime) {
+        newAnime.setId(findAnimeById(id).getId());
+        return animeRepository.save(newAnime);
+    }
 
- public void deleteAnime(Long id) {
-  findAnimeById(id);
-  repository.deleteById(id);
- }
+    public void deleteAnime(Long id) {
+        findAnimeById(id);
+        animeRepository.deleteById(id);
+    }
 
- private Anime findAnimeById(Long id) {
-  return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime com id " + id + " não encontrado." ));
- }
+    private Anime findAnimeById(Long id) {
+        return animeRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime com id " + id + " não encontrado." ));
+    }
 }

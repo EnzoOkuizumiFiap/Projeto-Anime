@@ -12,8 +12,7 @@ public class Anime {
     private Long id;
     private String titulo;
     private String descricao;
-    private List<Episodio> episodios;
     private LocalDate lancamento;
     private List<Categorias> categoria;
-    private String diretor;
+    private List<Personagem> personagens;
 }
