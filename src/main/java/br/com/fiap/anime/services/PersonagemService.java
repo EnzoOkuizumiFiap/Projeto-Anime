@@ -1,6 +1,5 @@
 package br.com.fiap.anime.services;
 
-import br.com.fiap.anime.models.Anime;
 import br.com.fiap.anime.models.Personagem;
 import br.com.fiap.anime.repositories.PersonagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,14 +31,13 @@ public class PersonagemService {
 
     public List<Personagem> getAllPersonagensByAnimeId(Long id) {
 
-        List<Personagem> personagens = List.of();
+        List<Personagem> personagens = new ArrayList<>();
 
         for (Personagem personagem : personagemRepository.findAll()) {
             if (Objects.equals(personagem.getAnime().getId(), id)) {
                 personagens.add(personagem);
             }
         }
-
         return personagens;
     }
 
