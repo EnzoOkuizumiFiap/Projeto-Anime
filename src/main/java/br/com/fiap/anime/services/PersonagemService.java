@@ -20,7 +20,7 @@ public class PersonagemService {
         return personagemRepository.findAll();
     }
 
-    public List<Personagem> addPersonagem(Personagem personagem) {
+    public Personagem addPersonagem(Personagem personagem) {
         return personagemRepository.save(personagem);
     }
 
