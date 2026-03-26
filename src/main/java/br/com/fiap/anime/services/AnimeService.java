@@ -23,16 +23,10 @@ public class AnimeService {
     }
 
     public Anime addAnime(Anime anime) {
-        if (anime.getPersonagens() != null) {
-            anime.getPersonagens().forEach(personagem -> personagem.setAnime(anime));
-        }
         return animeRepository.save(anime);
     }
 
     public Anime updateAnime(Long id, Anime newAnime) {
-        if (newAnime.getPersonagens() != null) {
-            newAnime.getPersonagens().forEach(personagem -> personagem.setAnime(newAnime));
-        }
         newAnime.setId(findAnimeById(id).getId());
         return animeRepository.save(newAnime);
     }

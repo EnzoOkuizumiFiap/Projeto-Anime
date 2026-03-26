@@ -18,7 +18,4 @@ public class Anime {
     private LocalDate lancamento;
 
     private List<Categoria> categoria;
-
-    @OneToMany(mappedBy = "anime", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Personagem> personagens;
 }
