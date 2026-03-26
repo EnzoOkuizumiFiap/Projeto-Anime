@@ -20,10 +20,7 @@ public class PersonagemService {
         return personagemRepository.findAll();
     }
 
-    public Personagem addPersonagem(Personagem personagem, Anime anime) {
-        if (anime.getId() == null) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime não encontrado");
-        }
+    public List<Personagem> addPersonagem(Personagem personagem) {
         return personagemRepository.save(personagem);
     }
 

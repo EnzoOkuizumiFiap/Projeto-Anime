@@ -16,6 +16,5 @@ public class Personagem {
 
     @ManyToOne
     @JoinColumn(name = "anime_id")
-    @JsonIgnore
     private Anime anime;
 }
