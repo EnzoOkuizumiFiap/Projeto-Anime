@@ -33,8 +33,8 @@ public class PersonagemController {
 
 
     @PostMapping
-    public ResponseEntity<Personagem> createPersonagem(@RequestBody Personagem personagem, @RequestBody Anime anime) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.addPersonagem(personagem, anime));
+    public ResponseEntity<Personagem> createPersonagem(@RequestBody Personagem personagem) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.addPersonagem(personagem));
     }
 
     @PutMapping("{id}")
