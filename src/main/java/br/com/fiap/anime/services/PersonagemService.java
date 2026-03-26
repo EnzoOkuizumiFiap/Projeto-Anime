@@ -1,21 +1,23 @@
 package br.com.fiap.anime.services;
 
 import br.com.fiap.anime.models.Personagem;
+import br.com.fiap.anime.repositories.AnimeRepository;
 import br.com.fiap.anime.repositories.PersonagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class PersonagemService {
 
     @Autowired
     private PersonagemRepository personagemRepository;
+
+    @Autowired
+    private AnimeRepository animeRepository;
 
     public List<Personagem> getAllPersonagens() {
         return personagemRepository.findAll();
@@ -30,14 +32,10 @@ public class PersonagemService {
     }
 
     public List<Personagem> getAllPersonagensByAnimeId(Long id) {
+        if (!animeRepository.existsById(id)) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime com id " + id + " não encontrado");
 
-        List<Personagem> personagens = new ArrayList<>();
-
-        for (Personagem personagem : personagemRepository.findAll()) {
-            if (Objects.equals(personagem.getAnime().getId(), id)) {
-                personagens.add(personagem);
-            }
-        }
+        List<Personagem> personagens = personagemRepository.findByAnimeId(id);
+        if (personagens.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum personagem encontrado para este Anime");
         return personagens;
     }
 
