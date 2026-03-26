@@ -21,10 +21,16 @@ public class PersonagemController {
         return service.getAllPersonagens();
     }
 
+    @GetMapping("anime/{id}")
+    public List<Personagem> listAllByAnimeId(@PathVariable Long id) {
+        return service.getAllPersonagensByAnimeId(id);
+    }
+
     @GetMapping("{id}")
     public ResponseEntity<Personagem> getPersonagemById(@PathVariable Long id) {
         return ResponseEntity.ok(service.getPersonagemById(id));
     }
+
 
     @PostMapping
     public ResponseEntity<Personagem> createPersonagem(@RequestBody Personagem personagem, @RequestBody Anime anime) {

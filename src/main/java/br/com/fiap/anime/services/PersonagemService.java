@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class PersonagemService {
@@ -29,6 +30,19 @@ public class PersonagemService {
 
     public Personagem getPersonagemById(Long id) {
         return findPersonagemById(id);
+    }
+
+    public List<Personagem> getAllPersonagensByAnimeId(Long id) {
+
+        List<Personagem> personagens = List.of();
+
+        for (Personagem personagem : personagemRepository.findAll()) {
+            if (Objects.equals(personagem.getAnime().getId(), id)) {
+                personagens.add(personagem);
+            }
+        }
+
+        return personagens;
     }
 
     public void deletePersonagem(Long id) {
