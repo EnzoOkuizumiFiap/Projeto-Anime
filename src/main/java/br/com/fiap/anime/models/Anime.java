@@ -19,6 +19,6 @@ public class Anime {
 
     private List<Categoria> categoria;
 
-    @OneToMany(mappedBy = "anime", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "anime", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Personagem> personagens;
 }

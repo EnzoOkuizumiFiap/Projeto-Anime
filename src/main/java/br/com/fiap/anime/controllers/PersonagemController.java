@@ -1,5 +1,6 @@
 package br.com.fiap.anime.controllers;
 
+import br.com.fiap.anime.models.Anime;
 import br.com.fiap.anime.models.Personagem;
 import br.com.fiap.anime.services.PersonagemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,8 @@ public class PersonagemController {
     }
 
     @PostMapping
-    public ResponseEntity<Personagem> createPersonagem(@RequestBody Personagem Personagem) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.addPersonagem(Personagem));
+    public ResponseEntity<Personagem> createPersonagem(@RequestBody Personagem personagem, @RequestBody Anime anime) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.addPersonagem(personagem, anime));
     }
 
     @PutMapping("{id}")
