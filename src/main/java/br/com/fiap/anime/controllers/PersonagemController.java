@@ -1,6 +1,5 @@
 package br.com.fiap.anime.controllers;
 
-import br.com.fiap.anime.models.Anime;
 import br.com.fiap.anime.models.Personagem;
 import br.com.fiap.anime.services.PersonagemService;
 import org.springframework.beans.factory.annotation.Autowired;

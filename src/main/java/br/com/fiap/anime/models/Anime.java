@@ -16,5 +16,7 @@ public class Anime {
     private String titulo;
     private String descricao;
     private LocalDate lancamento;
+
+    @ElementCollection
     private List<Categoria> categoria;
 }

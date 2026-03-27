@@ -1,6 +1,5 @@
 package br.com.fiap.anime.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 

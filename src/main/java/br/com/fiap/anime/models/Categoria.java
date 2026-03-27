@@ -5,8 +5,11 @@ public enum Categoria {
     Acao,
     Romance,
     Drama,
-    SciFi,
+    Scifi,
     Aventura,
     Terror,
-    Suspense
+    Suspense,
+    Cyberpunk,
+    Musical,
+    SliceOfLife
 }
