@@ -1,0 +1,113 @@
+(AVISO: Insira um por vez... Não fizemos para inserir uma lista de animes ou personagens)
+
+Inserir Animes
+
+{
+	"titulo": "Shikimori",
+	"descricao": "Um anime de comédia romântica",
+	"lancamento": "2022-04-09",
+	"categoria": [
+		"Romance",
+		"Comedia"
+	]
+}
+
+
+
+{
+	"titulo": "Mardock Scramble",
+	"descricao": "Um anime Sci-Fi Cyberpunk Neo-noir de 2010",
+	"lancamento": "2010-11-06",
+	"categoria": [
+		"Scifi",
+		"Cyberpunk",
+		"Drama"
+	]
+}
+
+
+
+{
+	"titulo": "Bocchi The Rock",
+	"descricao": "A vida desta estudante tímida e apaixonada por guitarra mudará da água pro vinho após entrar numa banda!",
+	"lancamento": "2022-10-09",
+	"categoria": [
+		"Comedia",
+		"SliceOfLife",
+		"Musical"
+	]
+}
+
+
+Inserir Personagens
+
+
+{
+	"nome": "Micchon Shikimori",
+	"personalidade": "Shikimori é uma garota gentil com um lindo sorriso.",
+	"anime": {
+		"id": 1
+	}
+}
+
+
+{
+	"nome": "Yuu Izumi",
+	"personalidade": "Izumi é um cara muito bondoso, doce, gentil, desastrado e tímido",
+	"anime": {
+		"id": 1
+	}
+}
+
+
+
+{
+	"nome": "Rune Balot",
+	"personalidade": "Rune Balot é uma garota Vulnerável, desconfiada, mas forte e determinada",
+	"anime": {
+		"id": 2
+	}
+}
+
+
+
+{
+	"nome": "Hitori Gotoh",
+	"personalidade": "Hitori Goth é uma garota extremamente tímida e introvertida, com um forte desejo de se apresentar em uma banda para destacar seus talentos"
+}
+
+
+
+Atualizando Anime
+
+{
+	"titulo": "Shikimori's Not Just a Cutie",
+	"descricao": "Um anime de comédia romântica",
+	"lancamento": "2022-04-09",
+	"categoria": [
+		"Romance",
+		"Comedia"
+	]
+}
+
+
+Atualizando Personagem
+
+{
+	"nome": "Hitori Gotoh",
+	"personalidade": "Hitori Goth é uma garota extremamente tímida e introvertida, com um forte desejo de se apresentar em uma banda para destacar seus talentos",
+	"anime": {
+		"id": 3
+	}
+}
+
+
+Deletando Anime - Vai deletar os personagens do Anime também
+
+http://localhost:8080/animes/2
+
+
+Deletando Personagens
+
+http://localhost:8080/personagens/1
+
