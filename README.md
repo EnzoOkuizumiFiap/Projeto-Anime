@@ -14,7 +14,7 @@ API REST desenvolvida em Spring Boot para o gerenciamento de um catálogo de ani
 * **Anime**: Armazena título, descrição, data de lançamento e categorias.
 * **Personagem**: Armazena nome, personalidade e o vínculo Many-to-One com a entidade Anime.
 * **Categorias (Enum)**: Comedia,
-  Acao, Romance, Drama, Scifi, Aventura, Terror, Suspense, Cyberpunk, Musical e Slice Of Life.
+  Acao, Romance, Drama, Scifi, Aventura, Terror, Suspense, Cyberpunk, Musical e SliceOfLife.
 
 ## Endpoints da API
 
@@ -38,6 +38,12 @@ API REST desenvolvida em Spring Boot para o gerenciamento de um catálogo de ani
 
 ## Configuração e Execução
 A aplicação utiliza o banco de dados H2 configurado com a URL `jdbc:h2:mem:animes`.
+
+---
+
+### Get Health Check
+
+![Print da requisição Get Anime](docs/images/Get%20Health%20Check.png)
 
 ---
 
