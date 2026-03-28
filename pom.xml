@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>br.com.fiap</groupId>
-    <artifactId>Projeto-Anime</artifactId>
+    <artifactId>animes</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>Anime</name>
+    <name>animes</name>
     <description>Projeto sobre site "pirata" de Anime</description>
     <url/>
     <licenses>
@@ -69,10 +69,6 @@
             <artifactId>spring-boot-starter-webmvc-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-h2console</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
@@ -103,5 +99,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

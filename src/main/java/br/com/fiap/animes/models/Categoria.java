@@ -1,4 +1,4 @@
-package br.com.fiap.anime.models;
+package br.com.fiap.animes.models;
 
 public enum Categoria {
     Comedia,

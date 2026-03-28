@@ -1,9 +1,9 @@
-package br.com.fiap.anime.services;
+package br.com.fiap.animes.services;
 
-import br.com.fiap.anime.models.Anime;
-import br.com.fiap.anime.models.Personagem;
-import br.com.fiap.anime.repositories.AnimeRepository;
-import br.com.fiap.anime.repositories.PersonagemRepository;
+import br.com.fiap.animes.models.Anime;
+import br.com.fiap.animes.models.Personagem;
+import br.com.fiap.animes.repositories.AnimeRepository;
+import br.com.fiap.animes.repositories.PersonagemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package br.com.fiap.anime;
+package br.com.fiap.animes;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
