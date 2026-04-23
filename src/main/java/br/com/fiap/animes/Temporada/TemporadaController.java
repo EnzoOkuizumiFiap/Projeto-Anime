@@ -1,6 +1,5 @@
 package br.com.fiap.animes.Temporada;
 
-import br.com.fiap.animes.Anime.dto.AnimeRequest;
 import br.com.fiap.animes.Temporada.dto.TemporadaRequest;
 import br.com.fiap.animes.Temporada.dto.TemporadaResponse;
 import jakarta.validation.Valid;
@@ -15,7 +14,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TemporadaController {
 
-    private TemporadaService service;
+    private final TemporadaService service;
 
     @GetMapping
     public List<TemporadaResponse> findAll() {
@@ -31,12 +30,12 @@ public class TemporadaController {
     }
 
     @PostMapping
-    public Temporada create(@RequestBody @Valid Temporada temporada) {
-        return service.create(temporada);
+    public ResponseEntity<TemporadaResponse> create(@RequestBody @Valid TemporadaRequest temporadaRequest) {
+        return ResponseEntity.ok(TemporadaResponse.fromEntity(service.create(temporadaRequest.toEntity())));
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<TemporadaResponse> update(@PathVariable Long id, @RequestBody TemporadaRequest temporadaRequest) {
+    public ResponseEntity<TemporadaResponse> update(@PathVariable Long id, @RequestBody @Valid TemporadaRequest temporadaRequest) {
         return ResponseEntity.ok(TemporadaResponse.fromEntity(service.update(id, temporadaRequest.toEntity())));
     }
 

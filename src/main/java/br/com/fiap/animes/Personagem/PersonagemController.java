@@ -44,7 +44,7 @@ public class PersonagemController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<PersonagemResponse> update(@PathVariable Long id, @RequestBody PersonagemRequest request) {
+    public ResponseEntity<PersonagemResponse> update(@PathVariable Long id, @RequestBody @Valid PersonagemRequest request) {
         return ResponseEntity.ok(PersonagemResponse.fromEntity(service.update(id, request)));
     }
 

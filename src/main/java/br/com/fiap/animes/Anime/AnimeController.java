@@ -36,7 +36,7 @@ public class AnimeController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<AnimeResponse> update(@PathVariable Long id, @RequestBody AnimeRequest animeRequest) {
+    public ResponseEntity<AnimeResponse> update(@PathVariable Long id, @RequestBody @Valid AnimeRequest animeRequest) {
         return ResponseEntity.ok(AnimeResponse.fromEntity(service.update(id, animeRequest.toEntity())));
     }
 

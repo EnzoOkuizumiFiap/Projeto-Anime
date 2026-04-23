@@ -1,6 +1,5 @@
 package br.com.fiap.animes.Temporada;
 
-import br.com.fiap.animes.Anime.Anime;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -37,6 +36,6 @@ public class TemporadaService {
     }
 
     private Temporada findTemporadaById(Long id) {
-        return temporadaRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime com id " + id + " não encontrado." ));
+        return temporadaRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime com id " + id + " não encontrado."));
     }
 }
