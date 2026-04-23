@@ -16,7 +16,7 @@ public class AnimeController {
     private final AnimeService animeService;
 
     @GetMapping
-    public List<AnimeResponse> getAllAnimes(){
+    public List<AnimeResponse> findAllAnimes(){
         return animeService.findAll()
                 .stream()
                 .map(AnimeResponse::fromEntity)
@@ -24,7 +24,7 @@ public class AnimeController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Anime> getAnimeById(@PathVariable Long id) {
+    public ResponseEntity<Anime> findAnimeById(@PathVariable Long id) {
         return ResponseEntity.ok(animeService.findById(id));
     }
 
