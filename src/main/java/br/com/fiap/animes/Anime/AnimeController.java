@@ -1,5 +1,8 @@
 package br.com.fiap.animes.Anime;
 
+import br.com.fiap.animes.Anime.dto.AnimeRequest;
+import br.com.fiap.animes.Anime.dto.AnimeResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,34 +12,37 @@ import java.util.List;
 
 @RestController
 @RequestMapping("animes")
+@RequiredArgsConstructor
 public class AnimeController {
-
-    @Autowired
-    private AnimeService service;
+    private final AnimeService animeService;
 
     @GetMapping
-    public List<Anime> ListAll(){
-        return service.getAllAnimes();
+    public List<AnimeResponse> getAllAnimes(){
+        return animeService.getAllAnimes()
+                .stream()
+                .map(AnimeResponse::fromEntity)
+                .toList();
     }
 
     @GetMapping("{id}")
     public ResponseEntity<Anime> getAnimeById(@PathVariable Long id) {
-        return ResponseEntity.ok(service.getAnimeById(id));
+        return ResponseEntity.ok(animeService.getAnimeById(id));
     }
 
     @PostMapping
-    public ResponseEntity<Anime> createAnime(@RequestBody Anime anime) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.addAnime(anime));
+    @ResponseStatus(HttpStatus.CREATED)
+    public Anime create(@RequestBody AnimeRequest animeRequest) {
+        return animeService.create(animeRequest.toEntity());
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Anime> updateAnime(@PathVariable Long id, @RequestBody Anime anime) {
-        return ResponseEntity.ok(service.updateAnime(id, anime));
+    public Anime update(@PathVariable Long id, @RequestBody Anime anime) {
+        return animeService.update(id, anime);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> deleteAnime(@PathVariable Long id) {
-        service.deleteAnime(id);
-        return ResponseEntity.noContent().build();
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteAnime(@PathVariable Long id) {
+        animeService.deleteAnime(id);
     }
 }

@@ -1,4 +1,4 @@
-package br.com.fiap.animes.Anime.DTO;
+package br.com.fiap.animes.Anime.dto;
 
 import br.com.fiap.animes.Anime.Anime;
 import br.com.fiap.animes.Anime.Categoria;
