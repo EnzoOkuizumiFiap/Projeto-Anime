@@ -3,6 +3,7 @@ package br.com.fiap.animes.Temporada;
 import br.com.fiap.animes.Anime.dto.AnimeRequest;
 import br.com.fiap.animes.Temporada.dto.TemporadaRequest;
 import br.com.fiap.animes.Temporada.dto.TemporadaResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,7 +31,7 @@ public class TemporadaController {
     }
 
     @PostMapping
-    public Temporada create(@RequestBody Temporada temporada) {
+    public Temporada create(@RequestBody @Valid Temporada temporada) {
         return service.create(temporada);
     }
 

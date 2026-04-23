@@ -2,6 +2,7 @@ package br.com.fiap.animes.Personagem;
 
 import br.com.fiap.animes.Personagem.dto.PersonagemRequest;
 import br.com.fiap.animes.Personagem.dto.PersonagemResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,7 +38,7 @@ public class PersonagemController {
     }
 
     @PostMapping
-    public ResponseEntity<PersonagemResponse> create(@RequestBody PersonagemRequest request) {
+    public ResponseEntity<PersonagemResponse> create(@RequestBody @Valid PersonagemRequest request) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(PersonagemResponse.fromEntity(service.create(request)));
     }

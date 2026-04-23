@@ -2,6 +2,7 @@ package br.com.fiap.animes.Anime;
 
 import br.com.fiap.animes.Anime.dto.AnimeRequest;
 import br.com.fiap.animes.Anime.dto.AnimeResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +30,7 @@ public class AnimeController {
     }
 
     @PostMapping
-    public ResponseEntity<AnimeResponse> create(@RequestBody AnimeRequest animeRequest) {
+    public ResponseEntity<AnimeResponse> create(@RequestBody @Valid AnimeRequest animeRequest) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(AnimeResponse.fromEntity(service.create(animeRequest.toEntity())));
     }
