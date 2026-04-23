@@ -1,6 +1,7 @@
 package br.com.fiap.animes.Temporada;
 
 import br.com.fiap.animes.Anime.dto.AnimeRequest;
+import br.com.fiap.animes.Temporada.dto.TemporadaRequest;
 import br.com.fiap.animes.Temporada.dto.TemporadaResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -24,7 +25,7 @@ public class TemporadaController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<TemporadaResponse> findById(@PathVariable String id) {
+    public ResponseEntity<TemporadaResponse> findById(@PathVariable Long id) {
         return ResponseEntity.ok(TemporadaResponse.fromEntity(service.findById(id)));
     }
 
@@ -34,8 +35,8 @@ public class TemporadaController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<TemporadaResponse> update(@PathVariable Long id, @RequestBody AnimeRequest animeRequest) {
-        return ResponseEntity.ok(TemporadaResponse.fromEntity(service.update(id, animeRequest.toEntity())));
+    public ResponseEntity<TemporadaResponse> update(@PathVariable Long id, @RequestBody TemporadaRequest temporadaRequest) {
+        return ResponseEntity.ok(TemporadaResponse.fromEntity(service.update(id, temporadaRequest.toEntity())));
     }
 
     @DeleteMapping("{id}")

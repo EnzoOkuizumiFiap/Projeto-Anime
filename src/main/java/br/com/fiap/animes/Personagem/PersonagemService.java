@@ -30,6 +30,7 @@ public class PersonagemService {
 
         List<Personagem> personagens = personagemRepository.findByAnimeId(id);
         if (personagens.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum personagem encontrado para este Anime");
+
         return personagens;
     }
 
@@ -42,7 +43,7 @@ public class PersonagemService {
         Personagem personagem = findPersonagemById(id);
 
         Anime anime = findAnimeById(request.animeId());
-        personagem.setAnimeId(anime);
+        personagem.setAnime(anime);
 
         return personagemRepository.save(personagem);
     }
