@@ -11,8 +11,6 @@ public class TemporadaService {
 
     private final TemporadaRepository temporadaRepository;
 
-
-
     public List<Temporada> findAll() {
         return temporadaRepository.findAll();
     }

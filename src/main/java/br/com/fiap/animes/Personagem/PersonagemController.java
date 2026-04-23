@@ -1,6 +1,8 @@
 package br.com.fiap.animes.Personagem;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import br.com.fiap.animes.Personagem.dto.PersonagemRequest;
+import br.com.fiap.animes.Personagem.dto.PersonagemResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,40 +10,46 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("personagens")
 public class PersonagemController {
-    @Autowired
-    private PersonagemService service;
+    private final PersonagemService service;
 
     @GetMapping
-    public List<Personagem> ListAll(){
-        return service.getAllPersonagens();
+    public List<PersonagemResponse> findAll() {
+        return service.findAll()
+                .stream()
+                .map(PersonagemResponse::fromEntity)
+                .toList();
     }
 
     @GetMapping("anime/{id}")
-    public List<Personagem> listAllByAnimeId(@PathVariable Long id) {
-        return service.getAllPersonagensByAnimeId(id);
+    public ResponseEntity<List<PersonagemResponse>> findAllByAnimeId(@PathVariable Long id) {
+        return ResponseEntity.ok(service.findAllByAnimeId(id)
+                .stream()
+                .map(PersonagemResponse::fromEntity)
+                .toList());
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Personagem> getPersonagemById(@PathVariable Long id) {
-        return ResponseEntity.ok(service.getPersonagemById(id));
+    public ResponseEntity<PersonagemResponse> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(PersonagemResponse.fromEntity(service.findById(id)));
     }
 
-
     @PostMapping
-    public ResponseEntity<Personagem> createPersonagem(@RequestBody Personagem personagem) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.addPersonagem(personagem));
+    public ResponseEntity<PersonagemResponse> create(@RequestBody PersonagemRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(PersonagemResponse.fromEntity(service.create(request)));
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Personagem> updatePersonagem(@PathVariable Long id, @RequestBody Personagem personagem) {
-        return ResponseEntity.ok(service.updatePersonagem(id, personagem));
+    public ResponseEntity<PersonagemResponse> update(@PathVariable Long id, @RequestBody PersonagemRequest request) {
+        return ResponseEntity.ok(PersonagemResponse.fromEntity(service.update(id, request)));
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> deletePersonagem(@PathVariable Long id) {
-        service.deletePersonagem(id);
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
         return ResponseEntity.noContent().build();
     }
 }

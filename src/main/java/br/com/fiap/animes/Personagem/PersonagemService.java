@@ -1,7 +1,9 @@
 package br.com.fiap.animes.Personagem;
 
+import br.com.fiap.animes.Anime.Anime;
 import br.com.fiap.animes.Anime.AnimeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import br.com.fiap.animes.Personagem.dto.PersonagemRequest;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -9,27 +11,21 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class PersonagemService {
+    private final PersonagemRepository personagemRepository;
 
-    @Autowired
-    private PersonagemRepository personagemRepository;
+    private final AnimeRepository animeRepository;
 
-    @Autowired
-    private AnimeRepository animeRepository;
-
-    public List<Personagem> getAllPersonagens() {
+    public List<Personagem> findAll() {
         return personagemRepository.findAll();
     }
 
-    public Personagem addPersonagem(Personagem personagem) {
-        return personagemRepository.save(personagem);
-    }
-
-    public Personagem getPersonagemById(Long id) {
+    public Personagem findById(Long id) {
         return findPersonagemById(id);
     }
 
-    public List<Personagem> getAllPersonagensByAnimeId(Long id) {
+    public List<Personagem> findAllByAnimeId(Long id) {
         if (!animeRepository.existsById(id)) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime com id " + id + " não encontrado");
 
         List<Personagem> personagens = personagemRepository.findByAnimeId(id);
@@ -37,18 +33,31 @@ public class PersonagemService {
         return personagens;
     }
 
-    public void deletePersonagem(Long id) {
+    public Personagem create(PersonagemRequest request) {
+        Anime anime = findAnimeById(request.animeId());
+        return personagemRepository.save(request.toEntity(anime));
+    }
+
+    public Personagem update(Long id, PersonagemRequest request) {
+        Personagem personagem = findPersonagemById(id);
+
+        Anime anime = findAnimeById(request.animeId());
+        personagem.setAnimeId(anime);
+
+        return personagemRepository.save(personagem);
+    }
+
+    public void delete(Long id) {
         findPersonagemById(id);
         personagemRepository.deleteById(id);
     }
 
-    public Personagem updatePersonagem(Long id, Personagem newPersonagem) {
-        findPersonagemById(id);
-        newPersonagem.setId(id);
-        return personagemRepository.save(newPersonagem);
-    }
 
     private Personagem findPersonagemById(Long id) {
         return personagemRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Personagem com id " + id + " não encontrado"));
+    }
+
+    private Anime findAnimeById(Long id) {
+        return animeRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime com id " + id + " não encontrado"));
     }
 }

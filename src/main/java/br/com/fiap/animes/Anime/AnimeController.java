@@ -13,37 +13,35 @@ import java.util.List;
 @RequestMapping("animes")
 @RequiredArgsConstructor
 public class AnimeController {
-    private final AnimeService animeService;
+    private final AnimeService service;
 
     @GetMapping
-    public List<AnimeResponse> findAllAnimes(){
-        return animeService.findAll()
+    public List<AnimeResponse> findAll() {
+        return service.findAll()
                 .stream()
                 .map(AnimeResponse::fromEntity)
                 .toList();
     }
 
     @GetMapping("{id}")
-    @ResponseStatus(HttpStatus.FOUND)
-    public Anime findAnimeById(@PathVariable Long id) {
-        return animeService.findById(id);
+    public ResponseEntity<AnimeResponse> findById(@PathVariable Long id) {
+        return ResponseEntity.ok(AnimeResponse.fromEntity(service.findById(id)));
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Anime create(@RequestBody AnimeRequest animeRequest) {
-        return animeService.create(animeRequest.toEntity());
+    public ResponseEntity<AnimeResponse> create(@RequestBody AnimeRequest animeRequest) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(AnimeResponse.fromEntity(service.create(animeRequest.toEntity())));
     }
 
     @PutMapping("{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public Anime update(@PathVariable Long id, @RequestBody AnimeRequest animeRequest) {
-        return animeService.update(id, animeRequest.toEntity());
+    public ResponseEntity<AnimeResponse> update(@PathVariable Long id, @RequestBody AnimeRequest animeRequest) {
+        return ResponseEntity.ok(AnimeResponse.fromEntity(service.update(id, animeRequest.toEntity())));
     }
 
     @DeleteMapping("{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteAnime(@PathVariable Long id) {
-        animeService.delete(id);
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
