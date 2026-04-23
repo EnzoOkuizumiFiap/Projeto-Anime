@@ -3,7 +3,6 @@ package br.com.fiap.animes.Anime;
 import br.com.fiap.animes.Personagem.Personagem;
 import br.com.fiap.animes.Personagem.PersonagemRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -16,11 +15,11 @@ public class AnimeService {
     private final AnimeRepository animeRepository;
     private final PersonagemRepository personagemRepository;
 
-    public List<Anime> getAllAnimes() {
+    public List<Anime> findAll() {
         return animeRepository.findAll();
     }
 
-    public Anime getAnimeById(Long id) {
+    public Anime findById(Long id) {
         return findAnimeById(id);
     }
 
@@ -33,7 +32,7 @@ public class AnimeService {
         return animeRepository.save(newAnime);
     }
 
-    public void deleteAnime(Long id) {
+    public void delete(Long id) {
         findAnimeById(id);
         List<Personagem> personagens = personagemRepository.findByAnimeId(id);
         personagemRepository.deleteAll(personagens);

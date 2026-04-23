@@ -3,7 +3,6 @@ package br.com.fiap.animes.Anime;
 import br.com.fiap.animes.Anime.dto.AnimeRequest;
 import br.com.fiap.animes.Anime.dto.AnimeResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +17,7 @@ public class AnimeController {
 
     @GetMapping
     public List<AnimeResponse> getAllAnimes(){
-        return animeService.getAllAnimes()
+        return animeService.findAll()
                 .stream()
                 .map(AnimeResponse::fromEntity)
                 .toList();
@@ -26,7 +25,7 @@ public class AnimeController {
 
     @GetMapping("{id}")
     public ResponseEntity<Anime> getAnimeById(@PathVariable Long id) {
-        return ResponseEntity.ok(animeService.getAnimeById(id));
+        return ResponseEntity.ok(animeService.findById(id));
     }
 
     @PostMapping
@@ -43,6 +42,6 @@ public class AnimeController {
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteAnime(@PathVariable Long id) {
-        animeService.deleteAnime(id);
+        animeService.delete(id);
     }
 }
