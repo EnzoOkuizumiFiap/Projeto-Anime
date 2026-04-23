@@ -1,5 +1,6 @@
-package br.com.fiap.animes.models;
+package br.com.fiap.animes.Personagem;
 
+import br.com.fiap.animes.Anime.Anime;
 import jakarta.persistence.*;
 import lombok.Data;
 

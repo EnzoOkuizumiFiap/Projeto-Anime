@@ -1,6 +1,5 @@
-package br.com.fiap.animes.repositories;
+package br.com.fiap.animes.Personagem;
 
-import br.com.fiap.animes.models.Personagem;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

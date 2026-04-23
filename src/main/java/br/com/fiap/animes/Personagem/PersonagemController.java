@@ -1,7 +1,5 @@
-package br.com.fiap.animes.controllers;
+package br.com.fiap.animes.Personagem;
 
-import br.com.fiap.animes.models.Personagem;
-import br.com.fiap.animes.services.PersonagemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
