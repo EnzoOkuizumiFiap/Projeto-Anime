@@ -24,8 +24,9 @@ public class AnimeController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Anime> findAnimeById(@PathVariable Long id) {
-        return ResponseEntity.ok(animeService.findById(id));
+    @ResponseStatus(HttpStatus.FOUND)
+    public Anime findAnimeById(@PathVariable Long id) {
+        return animeService.findById(id);
     }
 
     @PostMapping
@@ -35,8 +36,9 @@ public class AnimeController {
     }
 
     @PutMapping("{id}")
-    public Anime update(@PathVariable Long id, @RequestBody Anime anime) {
-        return animeService.update(id, anime);
+    @ResponseStatus(HttpStatus.OK)
+    public Anime update(@PathVariable Long id, @RequestBody AnimeRequest animeRequest) {
+        return animeService.update(id, animeRequest.toEntity());
     }
 
     @DeleteMapping("{id}")
