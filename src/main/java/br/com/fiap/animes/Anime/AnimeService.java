@@ -3,6 +3,8 @@ package br.com.fiap.animes.Anime;
 import br.com.fiap.animes.Personagem.Personagem;
 import br.com.fiap.animes.Personagem.PersonagemRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -41,5 +43,13 @@ public class AnimeService {
 
     private Anime findAnimeById(Long id) {
         return animeRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime com id " + id + " não encontrado." ));
+    }
+
+    public List<Anime> findAllByTitulo(String titulo) {
+        return animeRepository.findByTitulo(titulo);
+    }
+
+    public Page<AnimeProjections> findAllByReleaseDate(Integer date, Pageable pageable) {
+        return animeRepository.findByReleaseDate(date, pageable);
     }
 }

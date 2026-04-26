@@ -4,6 +4,8 @@ import br.com.fiap.animes.Anime.dto.AnimeRequest;
 import br.com.fiap.animes.Anime.dto.AnimeResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +24,16 @@ public class AnimeController {
                 .stream()
                 .map(AnimeResponse::fromEntity)
                 .toList();
+    }
+
+    @GetMapping("by-title/{titulo}")
+    public List<AnimeResponse> findAllByTitle(@PathVariable String title) {
+        return service.findAllByTitulo(title).stream().map(AnimeResponse::fromEntity).toList();
+    }
+
+    @GetMapping("by-date/{release}")
+    public Page<AnimeProjections> findAllByReleaseDate(@PathVariable Integer date, Pageable pageable) {
+        return service.findAllByReleaseDate(date, pageable);
     }
 
     @GetMapping("{id}")
