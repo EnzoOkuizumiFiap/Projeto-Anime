@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @RestController
 @RequestMapping("animes")
@@ -20,19 +19,13 @@ public class AnimeController {
     private final AnimeService service;
 
     @GetMapping
-    public List<AnimeResponse> findAll() {
-        return service.findAll()
-                .stream()
-                .map(AnimeResponse::fromEntity)
-                .toList();
+    public ResponseEntity<Page<AnimeResponse>> findAll(Pageable pageable) {
+        return ResponseEntity.ok(service.findAll(pageable).map(AnimeResponse::fromEntity));
     }
 
     @GetMapping("by-title/{titulo}")
-    public List<AnimeResponse> findAllByTitle(@PathVariable String titulo) {
-        return service.findAllByTitulo(titulo)
-                .stream()
-                .map(AnimeResponse::fromEntity)
-                .toList();
+    public ResponseEntity<Page<AnimeResponse>> findAllByTitle(@PathVariable String titulo, Pageable pageable) {
+        return ResponseEntity.ok(service.findAllByTitulo(titulo, pageable).map(AnimeResponse::fromEntity));
     }
 
     @GetMapping("by-date/{lancamento}")
@@ -48,12 +41,12 @@ public class AnimeController {
     @PostMapping
     public ResponseEntity<AnimeResponse> create(@RequestBody @Valid AnimeRequest animeRequest) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(AnimeResponse.fromEntity(service.create(animeRequest.toEntity())));
+                .body(AnimeResponse.fromEntity(service.create(animeRequest)));
     }
 
     @PutMapping("{id}")
     public ResponseEntity<AnimeResponse> update(@PathVariable Long id, @RequestBody @Valid AnimeRequest animeRequest) {
-        return ResponseEntity.ok(AnimeResponse.fromEntity(service.update(id, animeRequest.toEntity())));
+        return ResponseEntity.ok(AnimeResponse.fromEntity(service.update(id, animeRequest)));
     }
 
     @DeleteMapping("{id}")

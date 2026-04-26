@@ -1,7 +1,10 @@
 package br.com.fiap.animes.Anime;
 
+import br.com.fiap.animes.Anime.dto.AnimeRequest;
 import br.com.fiap.animes.Personagem.Personagem;
 import br.com.fiap.animes.Personagem.PersonagemRepository;
+import br.com.fiap.animes.Temporada.Temporada;
+import br.com.fiap.animes.Temporada.TemporadaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,28 +20,36 @@ import java.util.List;
 public class AnimeService {
     private final AnimeRepository animeRepository;
     private final PersonagemRepository personagemRepository;
+    private final TemporadaRepository temporadaRepository;
 
-    public List<Anime> findAll() {
-        return animeRepository.findAll();
+    public Page<Anime> findAll(Pageable pageable) {
+        return animeRepository.findAll(pageable);
     }
 
     public Anime findById(Long id) {
         return findAnimeById(id);
     }
 
-    public Anime create(Anime anime) {
-        return animeRepository.save(anime);
+    public Anime create(AnimeRequest request) {
+        return animeRepository.save(request.toEntity());
     }
 
-    public Anime update(Long id, Anime newAnime) {
-        newAnime.setId(findAnimeById(id).getId());
-        return animeRepository.save(newAnime);
+    public Anime update(Long id, AnimeRequest request) {
+        findAnimeById(id);
+        Anime anime = request.toEntity();
+        anime.setId(id);
+        return animeRepository.save(anime);
     }
 
     public void delete(Long id) {
         findAnimeById(id);
+
         List<Personagem> personagens = personagemRepository.findByAnimeId(id);
         personagemRepository.deleteAll(personagens);
+
+        List<Temporada> temporadas = temporadaRepository.findByAnimeId(id);
+        temporadaRepository.deleteAll(temporadas);
+
         animeRepository.deleteById(id);
     }
 
@@ -46,8 +57,8 @@ public class AnimeService {
         return animeRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime com id " + id + " não encontrado." ));
     }
 
-    public List<Anime> findAllByTitulo(String titulo) {
-        return animeRepository.findByTitulo(titulo);
+    public Page<Anime> findAllByTitulo(String titulo, Pageable pageable) {
+        return animeRepository.findByTituloContainingIgnoreCase(titulo, pageable);
     }
 
     public Page<AnimeProjections> findAllByLancamento(LocalDate lancamento, Pageable pageable) {

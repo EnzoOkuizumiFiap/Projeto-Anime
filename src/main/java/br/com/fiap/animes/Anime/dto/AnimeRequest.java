@@ -2,6 +2,7 @@ package br.com.fiap.animes.Anime.dto;
 
 import br.com.fiap.animes.Anime.Anime;
 import br.com.fiap.animes.Anime.Categoria;
+import br.com.fiap.animes.validation.SemCaractereEspecial;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
@@ -9,6 +10,7 @@ import java.util.List;
 
 public record AnimeRequest(
         @NotBlank
+        @SemCaractereEspecial
         String titulo,
 
         @NotBlank

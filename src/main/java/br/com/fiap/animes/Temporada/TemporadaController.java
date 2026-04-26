@@ -4,30 +4,33 @@ import br.com.fiap.animes.Temporada.dto.TemporadaRequest;
 import br.com.fiap.animes.Temporada.dto.TemporadaResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/temporadas")
+@RequestMapping("temporadas")
 @RequiredArgsConstructor
 public class TemporadaController {
 
     private final TemporadaService service;
 
     @GetMapping
-    public List<TemporadaResponse> findAll() {
-        return service.findAll()
-                .stream()
-                .map(TemporadaResponse::fromEntity)
-                .toList();
+    public ResponseEntity<Page<TemporadaResponse>> findAll(Pageable pageable) {
+        return ResponseEntity.ok(service.findAll(pageable).map(TemporadaResponse::fromEntity));
     }
 
     @GetMapping("{id}")
     public ResponseEntity<TemporadaResponse> findById(@PathVariable Long id) {
         return ResponseEntity.ok(TemporadaResponse.fromEntity(service.findById(id)));
+    }
+
+    @GetMapping("anime/{animeId}")
+    public ResponseEntity<Page<TemporadaResponse>> findAllByAnimeId(@PathVariable Long animeId, Pageable pageable) {
+        return ResponseEntity.ok(service.findAllByAnimeId(animeId, pageable)
+                .map(TemporadaResponse::fromEntity));
     }
 
     @PostMapping
