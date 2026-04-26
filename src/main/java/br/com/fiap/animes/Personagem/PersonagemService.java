@@ -4,6 +4,8 @@ import br.com.fiap.animes.Anime.Anime;
 import br.com.fiap.animes.Anime.AnimeRepository;
 import br.com.fiap.animes.Personagem.dto.PersonagemRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -25,10 +27,10 @@ public class PersonagemService {
         return findPersonagemById(id);
     }
 
-    public List<Personagem> findAllByAnimeId(Long id) {
+    public Page<Personagem> findAllByAnimeId(Long id, Pageable pageable) {
         if (!animeRepository.existsById(id)) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime com id " + id + " não encontrado");
 
-        List<Personagem> personagens = personagemRepository.findByAnimeId(id);
+        Page<Personagem> personagens = personagemRepository.findByAnimeId(id, pageable);
         if (personagens.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum personagem encontrado para este Anime");
 
         return personagens;
@@ -48,6 +50,10 @@ public class PersonagemService {
         return personagemRepository.save(personagem);
     }
 
+    private Anime findAnimeById(Long id) {
+        return animeRepository.findById(id).get();
+    }
+
     public void delete(Long id) {
         findPersonagemById(id);
         personagemRepository.deleteById(id);
@@ -58,7 +64,7 @@ public class PersonagemService {
         return personagemRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Personagem com id " + id + " não encontrado"));
     }
 
-    private Anime findAnimeById(Long id) {
-        return animeRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime com id " + id + " não encontrado"));
+    public List<Personagem> findByNome(String nome) {
+        return personagemRepository.findByNome(nome);
     }
 }

@@ -10,6 +10,6 @@ import java.util.List;
 public interface AnimeRepository extends JpaRepository<Anime, Long> {
     Page<AnimeProjections> findByReleaseDate(Integer date, Pageable pageable);
 
-    @Query("SELECT * FROM Anime a WHERE a.titulo = :criterio") //JPQL
-    List<Anime> findByTitulo(String criterio);
+    @Query("SELECT * FROM Anime a WHERE a.titulo = :title ORDER BY a.titulo") //JPQL
+    List<Anime> findByTitulo(String title);
 }
