@@ -7,13 +7,15 @@ import java.time.LocalDate;
 public record TemporadaResponse(
         String numTemporada,
         Integer qtdEpisodio,
-        LocalDate lancamento
+        LocalDate lancamento,
+        Long animeId
 ) {
     public static TemporadaResponse fromEntity(Temporada temporada) {
         return new TemporadaResponse(
                 temporada.getNumTemporada(),
                 temporada.getQtdEpisodio(),
-                temporada.getLancamento()
+                temporada.getLancamento(),
+                temporada.getAnime().getId()
         );
     }
 }

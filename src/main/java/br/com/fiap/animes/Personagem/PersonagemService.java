@@ -16,7 +16,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PersonagemService {
     private final PersonagemRepository personagemRepository;
-
     private final AnimeRepository animeRepository;
 
     public List<Personagem> findAll() {
@@ -42,16 +41,12 @@ public class PersonagemService {
     }
 
     public Personagem update(Long id, PersonagemRequest request) {
-        Personagem personagem = findPersonagemById(id);
+        Personagem newPersonagem = findPersonagemById(id);
 
         Anime anime = findAnimeById(request.animeId());
-        personagem.setAnime(anime);
+        newPersonagem.setAnime(anime);
 
-        return personagemRepository.save(personagem);
-    }
-
-    private Anime findAnimeById(Long id) {
-        return animeRepository.findById(id).get();
+        return personagemRepository.save(newPersonagem);
     }
 
     public void delete(Long id) {
@@ -62,6 +57,11 @@ public class PersonagemService {
 
     private Personagem findPersonagemById(Long id) {
         return personagemRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Personagem com id " + id + " não encontrado"));
+    }
+
+    private Anime findAnimeById(Long id) {
+        return animeRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime com id " + id + " não encontrado"));
     }
 
     public List<Personagem> findByNome(String nome) {

@@ -4,6 +4,7 @@ import br.com.fiap.animes.Personagem.dto.PersonagemRequest;
 import br.com.fiap.animes.Personagem.dto.PersonagemResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,11 +26,19 @@ public class PersonagemController {
     }
 
     @GetMapping("anime/{id}")
-    public ResponseEntity<List<PersonagemResponse>> findAllByAnimeId(@PathVariable Long id) {
-        return ResponseEntity.ok(service.findAllByAnimeId(id)
+    public ResponseEntity<List<PersonagemResponse>> findAllByAnimeId(@PathVariable Long id, Pageable pageable) {
+        return ResponseEntity.ok(service.findAllByAnimeId(id, pageable)
                 .stream()
                 .map(PersonagemResponse::fromEntity)
                 .toList());
+    }
+
+    @GetMapping("by-name/{nome}")
+    public List<PersonagemResponse> findAllByNome(@PathVariable String nome) {
+        return service.findByNome(nome)
+                .stream()
+                .map(PersonagemResponse::fromEntity)
+                .toList();
     }
 
     @GetMapping("{id}")

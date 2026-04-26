@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -49,7 +50,7 @@ public class AnimeService {
         return animeRepository.findByTitulo(titulo);
     }
 
-    public Page<AnimeProjections> findAllByReleaseDate(Integer date, Pageable pageable) {
-        return animeRepository.findByReleaseDate(date, pageable);
+    public Page<AnimeProjections> findAllByLancamento(LocalDate lancamento, Pageable pageable) {
+        return animeRepository.findByLancamento(lancamento, pageable);
     }
 }

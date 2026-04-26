@@ -4,6 +4,7 @@ import br.com.fiap.animes.Temporada.dto.TemporadaRequest;
 import br.com.fiap.animes.Temporada.dto.TemporadaResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,13 +31,14 @@ public class TemporadaController {
     }
 
     @PostMapping
-    public ResponseEntity<TemporadaResponse> create(@RequestBody @Valid TemporadaRequest temporadaRequest) {
-        return ResponseEntity.ok(TemporadaResponse.fromEntity(service.create(temporadaRequest.toEntity())));
+    public ResponseEntity<TemporadaResponse> create(@RequestBody @Valid TemporadaRequest request) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(TemporadaResponse.fromEntity(service.create(request)));
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<TemporadaResponse> update(@PathVariable Long id, @RequestBody @Valid TemporadaRequest temporadaRequest) {
-        return ResponseEntity.ok(TemporadaResponse.fromEntity(service.update(id, temporadaRequest.toEntity())));
+    public ResponseEntity<TemporadaResponse> update(@PathVariable Long id, @RequestBody @Valid TemporadaRequest request) {
+        return ResponseEntity.ok(TemporadaResponse.fromEntity(service.update(id, request)));
     }
 
     @DeleteMapping("{id}")

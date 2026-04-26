@@ -11,6 +11,6 @@ public interface PersonagemRepository extends JpaRepository<Personagem, Long> {
 
     Page<Personagem> findByAnimeId(Long animeId, Pageable pageable);
 
-    @Query("SELECT * FROM Personagem p WHERE p.nome = :name ORDER BY p.nome") //JPQL
+    @Query("SELECT p FROM Personagem p WHERE p.nome = :name ORDER BY p.nome") //JPQL
     List<Personagem> findByNome(String name);
 }

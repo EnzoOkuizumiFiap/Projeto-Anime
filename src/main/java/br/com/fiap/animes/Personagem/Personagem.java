@@ -20,6 +20,7 @@ public class Personagem {
 
     @Column(nullable = false)
     private String nome;
+
     private String personalidade;
 
     @ManyToOne

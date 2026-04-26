@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -27,13 +28,16 @@ public class AnimeController {
     }
 
     @GetMapping("by-title/{titulo}")
-    public List<AnimeResponse> findAllByTitle(@PathVariable String title) {
-        return service.findAllByTitulo(title).stream().map(AnimeResponse::fromEntity).toList();
+    public List<AnimeResponse> findAllByTitle(@PathVariable String titulo) {
+        return service.findAllByTitulo(titulo)
+                .stream()
+                .map(AnimeResponse::fromEntity)
+                .toList();
     }
 
-    @GetMapping("by-date/{release}")
-    public Page<AnimeProjections> findAllByReleaseDate(@PathVariable Integer date, Pageable pageable) {
-        return service.findAllByReleaseDate(date, pageable);
+    @GetMapping("by-date/{lancamento}")
+    public Page<AnimeProjections> findAllByLancamento(@PathVariable LocalDate lancamento, Pageable pageable) {
+        return service.findAllByLancamento(lancamento, pageable);
     }
 
     @GetMapping("{id}")

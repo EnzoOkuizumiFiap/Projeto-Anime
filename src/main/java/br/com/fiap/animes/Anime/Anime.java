@@ -1,6 +1,5 @@
 package br.com.fiap.animes.Anime;
 
-import br.com.fiap.animes.Temporada.Temporada;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,10 +27,6 @@ public class Anime {
 
     @Column(nullable = false)
     private LocalDate lancamento;
-
-    @OneToMany
-    @JoinColumn(name = "temporada_id")
-    private List<Temporada> temporada;
 
     @ElementCollection
     private List<Categoria> categoria;
