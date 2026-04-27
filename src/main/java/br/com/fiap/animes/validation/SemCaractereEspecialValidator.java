@@ -11,7 +11,7 @@ public class SemCaractereEspecialValidator implements ConstraintValidator<SemCar
     public boolean isValid(String value, ConstraintValidatorContext context) {
         if (value == null || value.isBlank()) return true;
 
-        boolean ok = value.matches("^[a-zA-ZÀ-ÿ\\s]+$");
+        boolean ok = value.matches("^[\\p{L}\\s'\\-.:!?(),]+$");
 
         if (!ok) addViolation(context, "O campo não pode conter caracteres especiais");
 

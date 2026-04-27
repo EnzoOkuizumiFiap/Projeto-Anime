@@ -10,4 +10,6 @@ public interface AnimeRepository extends JpaRepository<Anime, Long> {
     Page<AnimeProjections> findByLancamento(LocalDate lancamento, Pageable pageable);
 
     Page<Anime> findByTituloContainingIgnoreCase(String titulo, Pageable pageable);
+
+    boolean existsByTituloIgnoreCase(String titulo);
 }

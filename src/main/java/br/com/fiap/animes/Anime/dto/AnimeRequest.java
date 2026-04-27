@@ -2,14 +2,18 @@ package br.com.fiap.animes.Anime.dto;
 
 import br.com.fiap.animes.Anime.Anime;
 import br.com.fiap.animes.Anime.Categoria;
+import br.com.fiap.animes.validation.CategoriaValidation;
 import br.com.fiap.animes.validation.SemCaractereEspecial;
+import br.com.fiap.animes.validation.Titulo;
 import jakarta.validation.constraints.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@CategoriaValidation
 public record AnimeRequest(
         @NotBlank
+        @Titulo
         @SemCaractereEspecial
         String titulo,
 
