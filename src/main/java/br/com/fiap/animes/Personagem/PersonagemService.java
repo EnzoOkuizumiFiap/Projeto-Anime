@@ -26,20 +26,11 @@ public class PersonagemService {
 
     public Page<Personagem> findAllByAnimeId(Long id, Pageable pageable) {
         if (!animeRepository.existsById(id)) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime com id " + id + " não encontrado");
-
-        Page<Personagem> personagens = personagemRepository.findByAnimeId(id, pageable);
-
-        if (personagens.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum personagem encontrado para este Anime");
-
-        return personagens;
+        return personagemRepository.findByAnimeId(id, pageable);
     }
 
     public Page<PersonagemProjections> findByNome(String nome, Pageable pageable) {
-        Page<PersonagemProjections> personagens = personagemRepository.findByNomeContainingIgnoreCase(nome, pageable);
-
-        if (personagens.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhum personagem encontrado para o nome informado");
-
-        return personagens;
+        return personagemRepository.findByNomeContainingIgnoreCase(nome, pageable);
     }
 
     public Personagem create(PersonagemRequest request) {

@@ -26,12 +26,7 @@ public class TemporadaService {
 
     public Page<Temporada> findAllByAnimeId(Long animeId, Pageable pageable) {
         if (!animeRepository.existsById(animeId)) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime com id " + animeId + " não encontrado");
-
-        Page<Temporada> temporadas = temporadaRepository.findByAnimeId(animeId, pageable);
-
-        if (temporadas.isEmpty()) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Nenhuma temporada encontrada para este Anime");
-
-        return temporadas;
+        return temporadaRepository.findByAnimeId(animeId, pageable);
     }
 
     public Temporada create(TemporadaRequest request) {

@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,14 +24,16 @@ public class AnimeController {
         return ResponseEntity.ok(service.findAll(pageable).map(AnimeResponse::fromEntity));
     }
 
-    @GetMapping("by-title/{titulo}")
-    public ResponseEntity<Page<AnimeResponse>> findAllByTitle(@PathVariable String titulo, Pageable pageable) {
+    @GetMapping("by-title")
+    public ResponseEntity<Page<AnimeResponse>> findAllByTitle(@RequestParam String titulo, Pageable pageable) {
         return ResponseEntity.ok(service.findAllByTitulo(titulo, pageable).map(AnimeResponse::fromEntity));
     }
 
-    @GetMapping("by-date/{lancamento}")
-    public Page<AnimeProjections> findAllByLancamento(@PathVariable LocalDate lancamento, Pageable pageable) {
-        return service.findAllByLancamento(lancamento, pageable);
+    @GetMapping("by-date")
+    public ResponseEntity<Page<AnimeProjections>> findAllByLancamento(
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate lancamento,
+            Pageable pageable) {
+        return ResponseEntity.ok(service.findAllByLancamento(lancamento, pageable));
     }
 
     @GetMapping("{id}")

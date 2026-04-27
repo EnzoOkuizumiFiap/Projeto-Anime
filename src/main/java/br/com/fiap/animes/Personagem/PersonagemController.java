@@ -21,13 +21,13 @@ public class PersonagemController {
         return ResponseEntity.ok(service.findAll(pageable).map(PersonagemResponse::fromEntity));
     }
 
-    @GetMapping("anime/{id}")
-    public ResponseEntity<Page<PersonagemResponse>> findAllByAnimeId(@PathVariable Long id, Pageable pageable) {
-        return ResponseEntity.ok(service.findAllByAnimeId(id, pageable).map(PersonagemResponse::fromEntity));
+    @GetMapping("anime")
+    public ResponseEntity<Page<PersonagemResponse>> findAllByAnimeId(@RequestParam Long animeId, Pageable pageable) {
+        return ResponseEntity.ok(service.findAllByAnimeId(animeId, pageable).map(PersonagemResponse::fromEntity));
     }
 
-    @GetMapping("by-name/{nome}")
-    public ResponseEntity<Page<PersonagemProjections>> findAllByNome(@PathVariable String nome, Pageable pageable) {
+    @GetMapping("by-name")
+    public ResponseEntity<Page<PersonagemProjections>> findAllByNome(@RequestParam String nome, Pageable pageable) {
         return ResponseEntity.ok(service.findByNome(nome, pageable));
     }
 
