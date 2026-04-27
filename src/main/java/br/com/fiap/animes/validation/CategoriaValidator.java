@@ -15,25 +15,15 @@ public class CategoriaValidator implements ConstraintValidator<CategoriaValidati
 
     @Override
     public boolean isValid(AnimeRequest animeRequest, ConstraintValidatorContext context) {
-        var valid = true;
-
-        if (animeRequest == null || !fieldIsValid(animeRequest.categoria())) {
-            valid = false;
+        if (!fieldIsValid(animeRequest.categoria()) || hasInvalidCategory(animeRequest.categoria())) {
             addViolation(context, "categoria", "Categoria inserida incorretamente!");
+            return false;
         }
+        return true;
+    }
 
-        if (valid) {
-            boolean temInvalida = animeRequest.categoria()
-                    .stream()
-                    .anyMatch(c -> c == null || !categoriasValidas.contains(c));
-
-            if (temInvalida) {
-                valid = false;
-                addViolation(context, "categoria", "Categoria inserida incorretamente!");
-            }
-        }
-
-        return valid;
+    private boolean hasInvalidCategory(Collection<Categoria> categorias) {
+        return categorias.stream().anyMatch(c -> c == null || !categoriasValidas.contains(c));
     }
 
     private boolean fieldIsValid(Collection<Categoria> value) {
