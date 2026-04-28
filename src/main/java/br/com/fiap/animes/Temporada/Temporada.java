@@ -1,6 +1,7 @@
 package br.com.fiap.animes.Temporada;
 
 import br.com.fiap.animes.Anime.Anime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,13 +21,16 @@ public class Temporada {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String numTemporada;
 
+    @Column(nullable = false)
     private Integer qtdEpisodio;
 
+    @Column(nullable = false)
     private LocalDate lancamento;
 
-    @ManyToOne
-    @JoinColumn(name = "anime_id")
+    @ManyToOne(optional = false)
+    @JsonIgnore
     private Anime anime;
 }

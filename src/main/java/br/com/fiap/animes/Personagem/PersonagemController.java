@@ -27,7 +27,7 @@ public class PersonagemController {
     }
 
     @GetMapping("by-name")
-    public ResponseEntity<Page<PersonagemProjections>> findAllByNome(@RequestParam String nome, Pageable pageable) {
+    public ResponseEntity<Page<PersonagemSummary>> findAllByNome(@RequestParam String nome, Pageable pageable) {
         return ResponseEntity.ok(service.findByNome(nome, pageable));
     }
 

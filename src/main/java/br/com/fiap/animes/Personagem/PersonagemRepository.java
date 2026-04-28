@@ -9,5 +9,5 @@ public interface PersonagemRepository extends JpaRepository<Personagem, Long> {
 
     Page<Personagem> findByAnimeId(Long animeId, Pageable pageable);
 
-    Page<PersonagemProjections> findByNomeContainingIgnoreCase(String nome, Pageable pageable);
+    Page<PersonagemSummary> findByNomeContainingIgnoreCase(String nome, Pageable pageable);
 }

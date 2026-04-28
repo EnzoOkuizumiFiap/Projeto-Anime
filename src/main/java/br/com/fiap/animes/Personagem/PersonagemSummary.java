@@ -1,6 +1,6 @@
 package br.com.fiap.animes.Personagem;
 
-public interface PersonagemProjections {
+public interface PersonagemSummary {
     Long getId();
     String getNome();
     String getPersonalidade();

@@ -44,11 +44,19 @@ public class AnimeService {
         return animeRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime com id " + id + " não encontrado." ));
     }
 
-    public Page<Anime> findAllByTitulo(String titulo, Pageable pageable) {
+    public Page<AnimeSummary> findAllByTituloContaining(String titulo, Pageable pageable) {
         return animeRepository.findByTituloContainingIgnoreCase(titulo, pageable);
     }
 
-    public Page<AnimeProjections> findAllByLancamento(LocalDate lancamento, Pageable pageable) {
+    public Page<AnimeSummary> findAllByCategoria(List<Categoria> categorias, Pageable pageable) {
+        return animeRepository.findByCategoria(categorias, pageable);
+    }
+
+    public Page<AnimeSummary> findAllByLancamento(LocalDate lancamento, Pageable pageable) {
         return animeRepository.findByLancamento(lancamento, pageable);
+    }
+
+    public Page<AnimeSummary> findAllByPeriodoLancamento(Integer from, Integer to, Pageable pageable) {
+        return animeRepository.findByLancamentoBetween(from, to, pageable);
     }
 }

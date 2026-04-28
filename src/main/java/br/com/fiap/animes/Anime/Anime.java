@@ -25,6 +25,7 @@ public class Anime {
     @Column(nullable = false, unique = true)
     private String titulo;
 
+    @Column(nullable = false)
     private String descricao;
 
     @Column(nullable = false)
