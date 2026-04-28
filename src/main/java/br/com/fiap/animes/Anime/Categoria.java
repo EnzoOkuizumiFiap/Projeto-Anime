@@ -1,15 +1,15 @@
 package br.com.fiap.animes.Anime;
 
 public enum Categoria {
-    Comedia,
-    Acao,
-    Romance,
-    Drama,
-    Scifi,
-    Aventura,
-    Terror,
-    Suspense,
-    Cyberpunk,
-    Musical,
-    SliceOfLife
+    COMEDIA,
+    ACAO,
+    ROMANCE,
+    DRAMA,
+    SCIFI,
+    AVENTURA,
+    TERROR,
+    SUSPENSE,
+    CYBERPUNK,
+    MUSICAL,
+    SLICEOFLIFE
 }

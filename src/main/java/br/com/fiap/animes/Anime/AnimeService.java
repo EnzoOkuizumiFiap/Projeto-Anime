@@ -43,13 +43,6 @@ public class AnimeService {
 
     public void delete(Long id) {
         findAnimeById(id);
-
-        List<Personagem> personagens = personagemRepository.findByAnimeId(id);
-        personagemRepository.deleteAll(personagens);
-
-        List<Temporada> temporadas = temporadaRepository.findByAnimeId(id);
-        temporadaRepository.deleteAll(temporadas);
-
         animeRepository.deleteById(id);
     }
 

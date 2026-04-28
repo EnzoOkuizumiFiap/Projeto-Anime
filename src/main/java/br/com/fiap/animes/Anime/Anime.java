@@ -1,5 +1,7 @@
 package br.com.fiap.animes.Anime;
 
+import br.com.fiap.animes.Personagem.Personagem;
+import br.com.fiap.animes.Temporada.Temporada;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,5 +31,12 @@ public class Anime {
     private LocalDate lancamento;
 
     @ElementCollection
+    @Enumerated(EnumType.STRING)
     private List<Categoria> categoria;
+
+    @OneToMany(mappedBy = "personagem")
+    private List<Personagem> personagens;
+
+    @OneToMany(mappedBy = "temporada")
+    private List<Temporada> temporadas;
 }
