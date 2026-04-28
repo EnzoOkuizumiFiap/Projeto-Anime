@@ -11,10 +11,12 @@ import java.lang.annotation.Target;
 
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
+@Target({ElementType.FIELD, ElementType.PARAMETER, ElementType.RECORD_COMPONENT})
 @Constraint(validatedBy = CategoriaValidator.class)
 public @interface CategoriaValidation {
-    String message() default "Categoria inválida.";
+    Class<? extends Enum<?>> enumClass();
+
+    String message() default "Categoria inserida incorretamente!";
 
     Class<?>[] groups() default {};
 

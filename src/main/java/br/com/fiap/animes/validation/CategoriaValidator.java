@@ -1,38 +1,32 @@
 package br.com.fiap.animes.validation;
 
-import br.com.fiap.animes.Anime.Categoria;
-import br.com.fiap.animes.Anime.dto.AnimeRequest;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
-import java.util.EnumSet;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class CategoriaValidator implements ConstraintValidator<CategoriaValidation, AnimeRequest> {
-
-    private final Set<Categoria> categoriasValidas = EnumSet.allOf(Categoria.class);
+@Component
+public class CategoriaValidator implements ConstraintValidator<CategoriaValidation, Collection<?>> {
+    private Set<String> acceptedValues;
 
     @Override
-    public boolean isValid(AnimeRequest animeRequest, ConstraintValidatorContext context) {
-        if (animeRequest == null || animeRequest.categoria() == null) return true;
+    public void initialize(CategoriaValidation annotation) {
+        acceptedValues = Stream.of(annotation.enumClass().getEnumConstants())
+                .map(Enum::name)
+                .collect(Collectors.toSet());
+    }
 
-        if (hasInvalidCategory(animeRequest.categoria())) {
-            addViolation(context, "categoria", "Categoria inserida incorretamente!");
-            return false;
+    @Override
+    public boolean isValid(Collection<?> value, ConstraintValidatorContext context) {
+        if (value == null) {
+            return true;
         }
 
-        return true;
-    }
-
-    private boolean hasInvalidCategory(Collection<Categoria> categorias) {
-        return categorias.stream().anyMatch(c -> c == null || !categoriasValidas.contains(c));
-    }
-
-    private void addViolation(ConstraintValidatorContext context, String field, String message) {
-        context.disableDefaultConstraintViolation();
-        context.buildConstraintViolationWithTemplate(message)
-                .addPropertyNode(field)
-                .addConstraintViolation();
+        return value.stream()
+                .allMatch(item -> item != null && acceptedValues.contains(item.toString()));
     }
 }

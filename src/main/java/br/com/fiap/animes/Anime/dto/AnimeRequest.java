@@ -10,7 +10,6 @@ import jakarta.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@CategoriaValidation
 public record AnimeRequest(
         @NotBlank
         @Titulo
@@ -26,14 +25,15 @@ public record AnimeRequest(
 
         @NotNull
         @Size(min = 1)
-        List<Categoria> categoria
+        @CategoriaValidation(enumClass = Categoria.class)
+        List<String> categoria
 ) {
     public Anime toEntity() {
         return Anime.builder()
                 .titulo(titulo)
                 .descricao(descricao)
                 .lancamento(lancamento)
-                .categoria(categoria)
+                .categoria(categoria.stream().map(Categoria::valueOf).toList())
                 .build();
     }
 }
