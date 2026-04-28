@@ -6,7 +6,6 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +16,6 @@ import java.util.List;
 @RestController
 @RequestMapping("animes")
 @RequiredArgsConstructor
-@EnableSpringDataWebSupport(pageSerializationMode = EnableSpringDataWebSupport.PageSerializationMode.VIA_DTO)
 public class AnimeController {
     private final AnimeService service;
 
@@ -42,7 +40,7 @@ public class AnimeController {
     }
 
     @GetMapping("by-year-range")
-    public ResponseEntity<Page<AnimeSummary>> findAllByLaunchPeriod(@RequestParam Integer from, Integer to, Pageable pageable) {
+    public ResponseEntity<Page<AnimeSummary>> findAllByLaunchPeriod(@RequestParam Integer from, @RequestParam Integer to, Pageable pageable) {
         return ResponseEntity.ok(service.findAllByPeriodoLancamento(from, to, pageable));
     }
 

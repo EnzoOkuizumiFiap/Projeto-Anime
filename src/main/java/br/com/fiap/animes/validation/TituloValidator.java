@@ -6,11 +6,7 @@ import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
-import org.springframework.web.servlet.HandlerMapping;
 
-import java.util.Map;
 import java.util.Optional;
 
 @Component
@@ -24,7 +20,7 @@ public class TituloValidator implements ConstraintValidator<Titulo, String> {
         Optional<Anime> animeComTitulo = animeRepository.findByTituloIgnoreCase(titulo);
         if (animeComTitulo.isEmpty()) return true;
 
-        Long animeIdPath = extractAnimeIdFromPath();
+        Long animeIdPath = ValidationUtils.extractIdFromPath();
         boolean valid = animeIdPath != null && animeComTitulo.get().getId().equals(animeIdPath);
 
         if (!valid) addViolation(context, "Esse Título de anime já foi utilizado, insira outro!");
@@ -36,23 +32,6 @@ public class TituloValidator implements ConstraintValidator<Titulo, String> {
         context.disableDefaultConstraintViolation();
         context.buildConstraintViolationWithTemplate(message)
                 .addConstraintViolation();
-    }
-
-    private Long extractAnimeIdFromPath() {
-        if (!(RequestContextHolder.getRequestAttributes() instanceof ServletRequestAttributes attributes)) {
-            return null;
-        }
-
-        Object uriVariables = attributes.getRequest().getAttribute(HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE);
-        if (!(uriVariables instanceof Map<?, ?> variables) || !variables.containsKey("id")) {
-            return null;
-        }
-
-        try {
-            return Long.parseLong(variables.get("id").toString());
-        } catch (NumberFormatException e) {
-            return null;
-        }
     }
 
 }

@@ -1,7 +1,6 @@
 package br.com.fiap.animes.Personagem;
 
 import br.com.fiap.animes.Anime.Anime;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,13 +18,12 @@ public class Personagem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false,  unique = true)
     private String nome;
 
     @Column(nullable = false)
     private String personalidade;
 
     @ManyToOne(optional = false)
-    @JsonIgnore
     private Anime anime;
 }

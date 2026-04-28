@@ -24,9 +24,9 @@ public class PersonagemService {
         return findPersonagemById(id);
     }
 
-    public Page<Personagem> findAllByAnimeId(Long id, Pageable pageable) {
-        if (!animeRepository.existsById(id)) throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime com id " + id + " não encontrado");
-        return personagemRepository.findByAnimeId(id, pageable);
+    public Page<Personagem> findAllByAnimeId(Long animeId, Pageable pageable) {
+        findAnimeById(animeId);
+        return personagemRepository.findByAnimeId(animeId, pageable);
     }
 
     public Page<PersonagemSummary> findByNome(String nome, Pageable pageable) {
