@@ -57,6 +57,6 @@ public class AnimeService {
     }
 
     public Page<AnimeSummary> findAllByPeriodoLancamento(Integer from, Integer to, Pageable pageable) {
-        return animeRepository.findByReleaseYearBetween(from, to, pageable);
+        return animeRepository.findByLancamentoBetween(from, to, pageable);
     }
 }
