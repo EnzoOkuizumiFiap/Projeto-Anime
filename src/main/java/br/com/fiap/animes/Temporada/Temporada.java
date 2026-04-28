@@ -1,6 +1,7 @@
 package br.com.fiap.animes.Temporada;
 
 import br.com.fiap.animes.Anime.Anime;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,5 +31,6 @@ public class Temporada {
     private LocalDate lancamento;
 
     @ManyToOne(optional = false)
+    @JsonIgnore
     private Anime anime;
 }
