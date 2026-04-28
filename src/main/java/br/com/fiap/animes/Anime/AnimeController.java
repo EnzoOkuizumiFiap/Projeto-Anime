@@ -6,12 +6,12 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequestMapping("animes")
@@ -24,14 +24,24 @@ public class AnimeController {
         return ResponseEntity.ok(service.findAll(pageable).map(AnimeResponse::fromEntity));
     }
 
-    @GetMapping("by-title")
-    public ResponseEntity<Page<AnimeResponse>> findAllByTitle(@RequestParam String titulo, Pageable pageable) {
-        return ResponseEntity.ok(service.findAllByTitulo(titulo, pageable).map(AnimeResponse::fromEntity));
+    @GetMapping("by-title/{title}")
+    public ResponseEntity<Page<AnimeSummary>> findAllByTitle(@PathVariable String titulo, Pageable pageable) {
+        return ResponseEntity.ok(service.findAllByTituloContaining(titulo, pageable));
     }
 
-    @GetMapping("by-date")
-    public ResponseEntity<Page<AnimeProjections>> findAllByLancamento(@RequestParam LocalDate lancamento, Pageable pageable) {
+    @GetMapping("by-category/{categories}")
+    public ResponseEntity<Page<AnimeSummary>> findAllByCategory(@PathVariable List<Categoria> categorias, Pageable pageable) {
+        return ResponseEntity.ok(service.findAllByCategoria(categorias, pageable));
+    }
+
+    @GetMapping("by-date/{date}")
+    public ResponseEntity<Page<AnimeSummary>> findAllByLaunch(@PathVariable LocalDate lancamento, Pageable pageable) {
         return ResponseEntity.ok(service.findAllByLancamento(lancamento, pageable));
+    }
+
+    @GetMapping("by-year-range")
+    public ResponseEntity<Page<AnimeSummary>> findAllByLaunchPeriod(@RequestParam Integer from, Integer to, Pageable pageable) {
+        return ResponseEntity.ok(service.findAllByPeriodoLancamento(from, to, pageable));
     }
 
     @GetMapping("{id}")

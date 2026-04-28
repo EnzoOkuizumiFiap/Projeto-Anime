@@ -2,6 +2,8 @@ package br.com.fiap.animes.Anime.dto;
 
 import br.com.fiap.animes.Anime.Anime;
 import br.com.fiap.animes.Anime.Categoria;
+import br.com.fiap.animes.Personagem.Personagem;
+import br.com.fiap.animes.Temporada.Temporada;
 import br.com.fiap.animes.validation.CategoriaValidation;
 import br.com.fiap.animes.validation.SemCaractereEspecial;
 import br.com.fiap.animes.validation.Titulo;
@@ -26,7 +28,15 @@ public record AnimeRequest(
         @NotNull
         @Size(min = 1)
         @CategoriaValidation(enumClass = Categoria.class)
-        List<String> categoria
+        List<String> categoria,
+
+        @NotNull
+        @Size(min = 1)
+        List<Personagem> personagens,
+
+        @NotNull
+        @Size(min = 1)
+        List<Temporada> temporadas
 ) {
     public Anime toEntity() {
         return Anime.builder()
@@ -34,6 +44,8 @@ public record AnimeRequest(
                 .descricao(descricao)
                 .lancamento(lancamento)
                 .categoria(categoria.stream().map(c -> Categoria.valueOf(c.toUpperCase())).toList())
+                .personagens(personagens)
+                .temporadas(temporadas)
                 .build();
     }
 }

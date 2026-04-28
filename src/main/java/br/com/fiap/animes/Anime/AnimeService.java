@@ -1,10 +1,6 @@
 package br.com.fiap.animes.Anime;
 
 import br.com.fiap.animes.Anime.dto.AnimeRequest;
-import br.com.fiap.animes.Personagem.Personagem;
-import br.com.fiap.animes.Personagem.PersonagemRepository;
-import br.com.fiap.animes.Temporada.Temporada;
-import br.com.fiap.animes.Temporada.TemporadaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,8 +15,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AnimeService {
     private final AnimeRepository animeRepository;
-    private final PersonagemRepository personagemRepository;
-    private final TemporadaRepository temporadaRepository;
 
     public Page<Anime> findAll(Pageable pageable) {
         return animeRepository.findAll(pageable);
@@ -50,11 +44,19 @@ public class AnimeService {
         return animeRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime com id " + id + " não encontrado." ));
     }
 
-    public Page<Anime> findAllByTitulo(String titulo, Pageable pageable) {
+    public Page<AnimeSummary> findAllByTituloContaining(String titulo, Pageable pageable) {
         return animeRepository.findByTituloContainingIgnoreCase(titulo, pageable);
     }
 
-    public Page<AnimeProjections> findAllByLancamento(LocalDate lancamento, Pageable pageable) {
+    public Page<AnimeSummary> findAllByCategoria(List<Categoria> categorias, Pageable pageable) {
+        return animeRepository.findByCategoria(categorias, pageable);
+    }
+
+    public Page<AnimeSummary> findAllByLancamento(LocalDate lancamento, Pageable pageable) {
         return animeRepository.findByLancamento(lancamento, pageable);
+    }
+
+    public Page<AnimeSummary> findAllByPeriodoLancamento(Integer from, Integer to, Pageable pageable) {
+        return animeRepository.findByReleaseYearBetween(from, to, pageable);
     }
 }

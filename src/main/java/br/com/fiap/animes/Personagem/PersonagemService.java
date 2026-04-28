@@ -29,7 +29,7 @@ public class PersonagemService {
         return personagemRepository.findByAnimeId(id, pageable);
     }
 
-    public Page<PersonagemProjections> findByNome(String nome, Pageable pageable) {
+    public Page<PersonagemSummary> findByNome(String nome, Pageable pageable) {
         return personagemRepository.findByNomeContainingIgnoreCase(nome, pageable);
     }
 
