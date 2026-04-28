@@ -27,6 +27,6 @@ public class CategoriaValidator implements ConstraintValidator<CategoriaValidati
         }
 
         return value.stream()
-                .allMatch(item -> item != null && acceptedValues.contains(item.toString()));
+                .allMatch(item -> item != null && acceptedValues.contains(item.toString().toUpperCase()));
     }
 }

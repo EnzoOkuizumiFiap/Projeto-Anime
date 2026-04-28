@@ -34,9 +34,9 @@ public class Anime {
     @Enumerated(EnumType.STRING)
     private List<Categoria> categoria;
 
-    @OneToMany(mappedBy = "personagem")
+    @OneToMany(mappedBy = "anime")
     private List<Personagem> personagens;
 
-    @OneToMany(mappedBy = "temporada")
+    @OneToMany(mappedBy = "anime")
     private List<Temporada> temporadas;
 }

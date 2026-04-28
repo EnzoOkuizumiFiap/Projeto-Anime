@@ -33,7 +33,7 @@ public record AnimeRequest(
                 .titulo(titulo)
                 .descricao(descricao)
                 .lancamento(lancamento)
-                .categoria(categoria.stream().map(Categoria::valueOf).toList())
+                .categoria(categoria.stream().map(c -> Categoria.valueOf(c.toUpperCase())).toList())
                 .build();
     }
 }
