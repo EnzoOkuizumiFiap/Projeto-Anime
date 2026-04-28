@@ -7,7 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface TemporadaRepository extends JpaRepository<Temporada, Long> {
-    List<Temporada> findByAnimeId(Long animeId);
-
     Page<Temporada> findByAnimeId(Long animeId, Pageable pageable);
 }

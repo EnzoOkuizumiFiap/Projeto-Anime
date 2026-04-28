@@ -32,6 +32,7 @@ public class Anime {
 
     @ElementCollection
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private List<Categoria> categoria;
 
     @OneToMany(mappedBy = "anime")

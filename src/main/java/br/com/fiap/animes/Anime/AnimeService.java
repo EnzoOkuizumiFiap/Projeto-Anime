@@ -1,10 +1,6 @@
 package br.com.fiap.animes.Anime;
 
 import br.com.fiap.animes.Anime.dto.AnimeRequest;
-import br.com.fiap.animes.Personagem.Personagem;
-import br.com.fiap.animes.Personagem.PersonagemRepository;
-import br.com.fiap.animes.Temporada.Temporada;
-import br.com.fiap.animes.Temporada.TemporadaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,8 +15,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AnimeService {
     private final AnimeRepository animeRepository;
-    private final PersonagemRepository personagemRepository;
-    private final TemporadaRepository temporadaRepository;
 
     public Page<Anime> findAll(Pageable pageable) {
         return animeRepository.findAll(pageable);
