@@ -30,9 +30,7 @@ public class AnimeController {
     }
 
     @GetMapping("by-date")
-    public ResponseEntity<Page<AnimeProjections>> findAllByLancamento(
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate lancamento,
-            Pageable pageable) {
+    public ResponseEntity<Page<AnimeProjections>> findAllByLancamento(@RequestParam LocalDate lancamento, Pageable pageable) {
         return ResponseEntity.ok(service.findAllByLancamento(lancamento, pageable));
     }
 
