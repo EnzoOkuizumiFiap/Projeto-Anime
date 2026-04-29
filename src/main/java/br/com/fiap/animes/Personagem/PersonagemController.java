@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("personagens")
@@ -26,9 +28,9 @@ public class PersonagemController {
         return ResponseEntity.ok(service.findAllByAnimeId(animeId, pageable).map(PersonagemResponse::fromEntity));
     }
 
-    @GetMapping("by-name/{nome}")
-    public ResponseEntity<Page<PersonagemSummary>> findAllByNome(@PathVariable String nome, Pageable pageable) {
-        return ResponseEntity.ok(service.findByNome(nome, pageable));
+    @GetMapping("by-name")
+    public ResponseEntity<List<PersonagemSummary>> findAllByNome(@RequestParam String nome) {
+        return ResponseEntity.ok(service.findByNome(nome));
     }
 
     @GetMapping("{id}")

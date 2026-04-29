@@ -44,8 +44,8 @@ public class AnimeService {
         return animeRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime com id " + id + " não encontrado." ));
     }
 
-    public Page<AnimeSummary> findAllByTituloContaining(String titulo, Pageable pageable) {
-        return animeRepository.findDistinctByTituloContainingIgnoreCase(titulo, pageable);
+    public List<AnimeSummary> findAllByTituloContaining(String titulo) {
+        return animeRepository.findByTituloContainingIgnoreCase(titulo);
     }
 
     public Page<AnimeSummary> findAllByCategoria(List<Categoria> categorias, Pageable pageable) {

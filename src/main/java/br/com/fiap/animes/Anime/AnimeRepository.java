@@ -17,7 +17,7 @@ public interface AnimeRepository extends JpaRepository<Anime, Long> {
     @Query("SELECT a FROM Anime a JOIN a.categoria c WHERE c IN :categorias")
     Page<AnimeSummary> findByCategorias(List<Categoria> categorias, Pageable pageable);
 
-    Page<AnimeSummary> findDistinctByTituloContainingIgnoreCase(String titulo, Pageable pageable);
+    List<AnimeSummary> findByTituloContainingIgnoreCase(String titulo);
 
     Optional<Anime> findByTituloIgnoreCase(String titulo);
 }

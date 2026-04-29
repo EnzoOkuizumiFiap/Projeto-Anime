@@ -24,9 +24,9 @@ public class AnimeController {
         return ResponseEntity.ok(service.findAll(pageable).map(AnimeResponse::fromEntity));
     }
 
-    @GetMapping("by-title/{title}")
-    public ResponseEntity<Page<AnimeSummary>> findAllByTitle(@PathVariable String title, Pageable pageable) {
-        return ResponseEntity.ok(service.findAllByTituloContaining(title, pageable));
+    @GetMapping("by-title")
+    public ResponseEntity<List<AnimeSummary>> findAllByTitle(@RequestParam String titulo) {
+        return ResponseEntity.ok(service.findAllByTituloContaining(titulo));
     }
 
     @GetMapping("by-category/{categories}")

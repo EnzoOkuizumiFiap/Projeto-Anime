@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PersonagemService {
@@ -29,8 +31,8 @@ public class PersonagemService {
         return personagemRepository.findByAnimeId(animeId, pageable);
     }
 
-    public Page<PersonagemSummary> findByNome(String nome, Pageable pageable) {
-        return personagemRepository.findByNomeContainingIgnoreCase(nome, pageable);
+    public List<PersonagemSummary> findByNome(String nome) {
+        return personagemRepository.findByNomeContainingIgnoreCase(nome);
     }
 
     public Personagem create(PersonagemRequest request) {
