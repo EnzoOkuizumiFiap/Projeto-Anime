@@ -26,8 +26,8 @@ public class PersonagemController {
         return ResponseEntity.ok(service.findAllByAnimeId(animeId, pageable).map(PersonagemResponse::fromEntity));
     }
 
-    @GetMapping("by-name")
-    public ResponseEntity<Page<PersonagemSummary>> findAllByNome(@RequestParam String nome, Pageable pageable) {
+    @GetMapping("by-name/{nome}")
+    public ResponseEntity<Page<PersonagemSummary>> findAllByNome(@PathVariable String nome, Pageable pageable) {
         return ResponseEntity.ok(service.findByNome(nome, pageable));
     }
 

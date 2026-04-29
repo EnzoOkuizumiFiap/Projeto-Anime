@@ -27,8 +27,8 @@ public class TemporadaController {
         return ResponseEntity.ok(TemporadaResponse.fromEntity(service.findById(id)));
     }
 
-    @GetMapping("anime")
-    public ResponseEntity<Page<TemporadaResponse>> findAllByAnimeId(@RequestParam Long animeId, Pageable pageable) {
+    @GetMapping("by-anime/{animeId}")
+    public ResponseEntity<Page<TemporadaResponse>> findAllByAnimeId(@PathVariable Long animeId, Pageable pageable) {
         return ResponseEntity.ok(service.findAllByAnimeId(animeId, pageable)
                 .map(TemporadaResponse::fromEntity));
     }
