@@ -36,9 +36,9 @@ public class Anime {
     @Column(nullable = false)
     private List<Categoria> categoria;
 
-    @OneToMany(mappedBy = "anime")
+    @OneToMany(mappedBy = "anime", cascade = CascadeType.ALL)
     private List<Personagem> personagens;
 
-    @OneToMany(mappedBy = "anime")
+    @OneToMany(mappedBy = "anime", cascade = CascadeType.ALL)
     private List<Temporada> temporadas;
 }
