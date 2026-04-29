@@ -5,16 +5,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 public interface AnimeRepository extends JpaRepository<Anime, Long> {
-    Page<AnimeSummary> findByLancamento(LocalDate lancamento, Pageable pageable);
+    Page<AnimeSummary> findDistinctByLancamento(LocalDate lancamento, Pageable pageable);
 
-    Page<AnimeSummary> findByLancamentoBetween(LocalDate releaseAfter, LocalDate releaseBefore, Pageable pageable);
+    Page<AnimeSummary> findDistinctByLancamentoBetween(LocalDate releaseAfter, LocalDate releaseBefore, Pageable pageable);
 
-    Page<AnimeSummary> findByCategoria(String categoria, Pageable pageable);
+    Page<AnimeSummary> findDistinctByCategoriaIn(List<Categoria> categorias, Pageable pageable);
 
-    Page<AnimeSummary> findByTituloContainingIgnoreCase(String titulo, Pageable pageable);
+    Page<AnimeSummary> findDistinctByTituloContainingIgnoreCase(String titulo, Pageable pageable);
 
     Optional<Anime> findByTituloIgnoreCase(String titulo);
 }

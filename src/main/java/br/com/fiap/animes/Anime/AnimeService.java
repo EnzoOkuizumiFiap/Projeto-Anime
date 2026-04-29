@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -44,18 +45,18 @@ public class AnimeService {
     }
 
     public Page<AnimeSummary> findAllByTituloContaining(String titulo, Pageable pageable) {
-        return animeRepository.findByTituloContainingIgnoreCase(titulo, pageable);
+        return animeRepository.findDistinctByTituloContainingIgnoreCase(titulo, pageable);
     }
 
-    public Page<AnimeSummary> findAllByCategoria(String category, Pageable pageable) {
-        return animeRepository.findByCategoria(category, pageable);
+    public Page<AnimeSummary> findAllByCategoria(List<Categoria> categorias, Pageable pageable) {
+        return animeRepository.findDistinctByCategoriaIn(categorias, pageable);
     }
 
     public Page<AnimeSummary> findAllByLancamento(LocalDate lancamento, Pageable pageable) {
-        return animeRepository.findByLancamento(lancamento, pageable);
+        return animeRepository.findDistinctByLancamento(lancamento, pageable);
     }
 
     public Page<AnimeSummary> findAllByPeriodoLancamento(LocalDate from, LocalDate to, Pageable pageable) {
-        return animeRepository.findByLancamentoBetween(from, to, pageable);
+        return animeRepository.findDistinctByLancamentoBetween(from, to, pageable);
     }
 }

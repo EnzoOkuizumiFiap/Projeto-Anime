@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @RequestMapping("animes")
@@ -28,9 +29,9 @@ public class AnimeController {
         return ResponseEntity.ok(service.findAllByTituloContaining(title, pageable));
     }
 
-    @GetMapping("by-category/{category}")
-    public ResponseEntity<Page<AnimeSummary>> findAllByCategory(@PathVariable String category, Pageable pageable) {
-        return ResponseEntity.ok(service.findAllByCategoria(category, pageable));
+    @GetMapping("by-category/{categories}")
+    public ResponseEntity<Page<AnimeSummary>> findAllByCategory(@PathVariable List<Categoria> categories, Pageable pageable) {
+        return ResponseEntity.ok(service.findAllByCategoria(categories, pageable));
     }
 
     @GetMapping("by-date/{date}")
