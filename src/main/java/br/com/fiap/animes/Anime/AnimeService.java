@@ -49,7 +49,7 @@ public class AnimeService {
     }
 
     public Page<AnimeSummary> findAllByCategoria(List<Categoria> categorias, Pageable pageable) {
-        return animeRepository.findDistinctByCategoriaIn(categorias, pageable);
+        return animeRepository.findByCategorias(categorias, pageable);
     }
 
     public Page<AnimeSummary> findAllByLancamento(LocalDate lancamento, Pageable pageable) {
