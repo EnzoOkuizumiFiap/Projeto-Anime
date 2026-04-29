@@ -5,4 +5,5 @@ import java.time.LocalDate;
 public interface AnimeSummary {
     String getTitulo();
     LocalDate getLancamento();
+    Categoria getCategoria();
 }

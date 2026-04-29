@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @RestController
 @RequestMapping("animes")
@@ -29,9 +28,9 @@ public class AnimeController {
         return ResponseEntity.ok(service.findAllByTituloContaining(title, pageable));
     }
 
-    @GetMapping("by-category/{categories}")
-    public ResponseEntity<Page<AnimeSummary>> findAllByCategory(@PathVariable List<Categoria> categories, Pageable pageable) {
-        return ResponseEntity.ok(service.findAllByCategoria(categories, pageable));
+    @GetMapping("by-category/{category}")
+    public ResponseEntity<Page<AnimeSummary>> findAllByCategory(@PathVariable String category, Pageable pageable) {
+        return ResponseEntity.ok(service.findAllByCategoria(category, pageable));
     }
 
     @GetMapping("by-date/{date}")
@@ -39,8 +38,8 @@ public class AnimeController {
         return ResponseEntity.ok(service.findAllByLancamento(date, pageable));
     }
 
-    @GetMapping("by-year-range")
-    public ResponseEntity<Page<AnimeSummary>> findAllByLaunchPeriod(@RequestParam Integer from, @RequestParam Integer to, Pageable pageable) {
+    @GetMapping("by-year-range/{from}/{to}")
+    public ResponseEntity<Page<AnimeSummary>> findAllByLaunchPeriod(@PathVariable LocalDate from, @PathVariable LocalDate to, Pageable pageable) {
         return ResponseEntity.ok(service.findAllByPeriodoLancamento(from, to, pageable));
     }
 
