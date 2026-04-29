@@ -2,7 +2,9 @@ package br.com.fiap.animes.Anime.dto;
 
 import br.com.fiap.animes.Anime.Anime;
 import br.com.fiap.animes.Anime.Categoria;
+import br.com.fiap.animes.Personagem.Personagem;
 import br.com.fiap.animes.Personagem.dto.PersonagemResponse;
+import br.com.fiap.animes.Temporada.Temporada;
 import br.com.fiap.animes.Temporada.dto.TemporadaResponse;
 
 import java.time.LocalDate;
@@ -13,8 +15,8 @@ public record AnimeResponse(
     String descricao,
     LocalDate lancamento,
     List<Categoria> categoria,
-    List<PersonagemResponse> personagens,
-    List<TemporadaResponse> temporadas
+    List<Personagem> personagens,
+    List<Temporada> temporadas
 ) {
     public static AnimeResponse fromEntity(Anime anime) {
         return new AnimeResponse(
@@ -22,8 +24,8 @@ public record AnimeResponse(
                 anime.getDescricao(),
                 anime.getLancamento(),
                 anime.getCategoria(),
-                anime.getPersonagens().stream().map(PersonagemResponse::fromEntity).toList(),
-                anime.getTemporadas().stream().map(TemporadaResponse::fromEntity).toList()
+                anime.getPersonagens(),
+                anime.getTemporadas()
         );
     }
 }
