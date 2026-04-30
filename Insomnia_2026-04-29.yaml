@@ -1,0 +1,631 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: Projeto Anime
+meta:
+  id: wrk_5d440e9822864b1898586a024fc34453
+  created: 1774472030195
+  modified: 1774472030195
+  description: ""
+collection:
+  - name: Personagem
+    meta:
+      id: fld_7110ea51193744b8a5d10e45f25c57b7
+      created: 1776984882608
+      modified: 1777508502570
+      sortKey: -1776984883830.6875
+      description: ""
+    children:
+      - url: http://localhost:8080/{{ _.path }}
+        name: Get All Personagens
+        meta:
+          id: req_85b42346af014c23906436fe0637a1af
+          created: 1774472854534
+          modified: 1777414215785
+          isPrivate: false
+          description: ""
+          sortKey: -1776984893058
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/{{ _.path }}
+        name: Post Personagens
+        meta:
+          id: req_b13a6cbc85ca4e3f8b1de4bc899a35cc
+          created: 1774523211506
+          modified: 1777511062592
+          isPrivate: false
+          description: ""
+          sortKey: -1776984893158
+        method: POST
+        body:
+          mimeType: application/json
+          text: >
+            {
+            	"nome": "Yuu Izumi",
+            	"personalidade": "Izumi é um cara muito bondoso, doce, gentil, desastrado e tímido",
+            	"animeId": 1
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/{{ _.path }}/1
+        name: Update Personagens
+        meta:
+          id: req_f7e30ea0210445e18d28fb1a4c2ee924
+          created: 1774527951200
+          modified: 1777511386951
+          isPrivate: false
+          description: ""
+          sortKey: -1776984892808
+        method: PUT
+        body:
+          mimeType: application/json
+          text: >-
+            {
+            	"nome": "Micchon Shikimori",
+            	"personalidade": "Shikimori é uma garota gentil com um lindo sorriso e uma namorada carinhosa com Izumi.",
+            	"animeId": 1
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/{{ _.path }}/anime/1
+        name: Get Personagens by Anime Id
+        meta:
+          id: req_7e211e155c1e457faa42c2c236b2a702
+          created: 1774532088553
+          modified: 1777414219968
+          isPrivate: false
+          description: ""
+          sortKey: -1776984892858
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/{{ _.path }}/1
+        name: Get Personagens by Id
+        meta:
+          id: req_5df9203cfad447aabd3fd4d20d531505
+          created: 1774553701520
+          modified: 1777414211601
+          isPrivate: false
+          description: ""
+          sortKey: -1776984892958
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/{{ _.path }}/1
+        name: Delete Personagem
+        meta:
+          id: req_6f7f7861bdd9474b91c6b850c3d1be16
+          created: 1774553766279
+          modified: 1777414230109
+          isPrivate: false
+          description: ""
+          sortKey: -1776984892758
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/{{ _.path }}/by-name
+        name: Get Personagens by Nome
+        meta:
+          id: req_bf25ccc77c01402a857fefacec8b533d
+          created: 1777492089925
+          modified: 1777494137706
+          isPrivate: false
+          description: ""
+          sortKey: -1776984892833
+        method: GET
+        parameters:
+          - name: nome
+            value: Micchon Shikimori
+            description: ""
+            disabled: false
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+    environment:
+      path: personagens
+  - name: Temporada
+    meta:
+      id: fld_fc18431f177e41b3a8d42a579419d07e
+      created: 1776984977607
+      modified: 1777508500684
+      sortKey: -1776984883423.125
+      description: ""
+    children:
+      - url: http://localhost:8080/{{ _.path }}
+        name: Post Temporada
+        meta:
+          id: req_f47fa41279db409595d96c0f61871fd2
+          created: 1774472035146
+          modified: 1777511139635
+          isPrivate: false
+          description: ""
+          sortKey: -1776985002557
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "numTemporada": "Temporada 1",
+              "qtdEpisodio": 12,
+              "lancamento": "2022-04-10",
+              "animeId": 1
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/{{ _.path }}
+        name: Get All Temporada
+        meta:
+          id: req_5c19157aeb1548c3ba4e2e982f4ddc5f
+          created: 1774472104272
+          modified: 1777414151894
+          isPrivate: false
+          description: ""
+          sortKey: -1776985002507
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/{{ _.path }}/1
+        name: Delete Temporada
+        meta:
+          id: req_eac4cd7bc7064ccaac45a4aadcab76d2
+          created: 1774472229228
+          modified: 1777511480499
+          isPrivate: false
+          description: ""
+          sortKey: -1776985002257
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/{{ _.path }}/1
+        name: Update Temporada
+        meta:
+          id: req_debe160c16c1417ba69ee449de073ee4
+          created: 1774472240495
+          modified: 1777511217964
+          isPrivate: false
+          description: ""
+          sortKey: -1776985002357
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "numTemporada": "Temporada 1",
+              "qtdEpisodio": 24,
+              "lancamento": "2022-04-10",
+              "animeId": 1
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/{{ _.path }}/1
+        name: Get Temporada by Id
+        meta:
+          id: req_49315615060b46418f0370aa584748ea
+          created: 1774556998236
+          modified: 1777414155420
+          isPrivate: false
+          description: ""
+          sortKey: -1776985002457
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/{{ _.path }}/by-anime/1
+        name: Get All Temporada by Anime Id
+        meta:
+          id: req_4c4c93cafaa24670904bb97918591f38
+          created: 1777491698223
+          modified: 1777492404093
+          isPrivate: false
+          description: ""
+          sortKey: -1776985002482
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+    environment:
+      path: temporadas
+  - name: Anime
+    meta:
+      id: fld_5b6cee5987c54a4cb592d900ed96e0e0
+      created: 1776985015539
+      modified: 1777397089263
+      sortKey: -1776984884238.25
+      description: ""
+    children:
+      - url: http://localhost:8080/{{ _.path }}
+        name: Get All Animes
+        meta:
+          id: req_131db2e2f10f4a5d8d8e62a2f9234deb
+          created: 1776985015539
+          modified: 1777404525982
+          isPrivate: false
+          description: ""
+          sortKey: -1776985002507
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/{{ _.path }}
+        name: Post Anime
+        meta:
+          id: req_13853c1efd87486a91ebf60f1d6e782f
+          created: 1776985015539
+          modified: 1777510998650
+          isPrivate: false
+          description: ""
+          sortKey: -1776985002557
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"titulo": "Shikimori",
+            	"descricao": "Um anime de comédia romântica",
+            	"lancamento": "2022-04-09",
+            	"categoria": [
+            		"Romance",
+            		"Comedia"
+            	]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/{{ _.path }}/1
+        name: Get Anime by Id
+        meta:
+          id: req_967446b44e71446c944f784d61a640a0
+          created: 1776985015539
+          modified: 1777404529606
+          isPrivate: false
+          description: ""
+          sortKey: -1776985002457
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/{{ _.path }}/1
+        name: Delete Anime
+        meta:
+          id: req_dee4eb7842a041429346c50a4d570741
+          created: 1776985015539
+          modified: 1777511928753
+          isPrivate: false
+          description: ""
+          sortKey: -1776985002257
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/{{ _.path }}/1
+        name: Update Anime
+        meta:
+          id: req_ec893b9a3b5f4549b5ce9ee314b7919b
+          created: 1776985015539
+          modified: 1777511193331
+          isPrivate: false
+          description: ""
+          sortKey: -1776985002357
+        method: PUT
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"titulo": "Shikimori's Not Just a Cutie",
+            	"descricao": "Um ótimo anime de comédia romântica!",
+            	"lancamento": "2022-04-09",
+            	"categoria": [
+            		"Romance",
+            		"Comedia",
+            		"SliceOfLife"
+            	]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/{{ _.path }}/by-date/2022-04-09
+        name: Get Anime by Lancamento
+        meta:
+          id: req_6454181322bc4b16ab539bac059519ba
+          created: 1777400525207
+          modified: 1777491652314
+          isPrivate: false
+          description: ""
+          sortKey: -1776985002407
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.4.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/{{ _.path }}/by-category/COMEDIA
+        name: Get Anime by Categoria
+        meta:
+          id: req_05f1acc456c341c798e0feadc22db77a
+          created: 1777484147743
+          modified: 1777484190912
+          isPrivate: false
+          description: ""
+          sortKey: -1776985002382
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/{{ _.path }}/by-title
+        name: Get Anime By Titulo
+        meta:
+          id: req_20745e738cb042b8aa8495dd8867d051
+          created: 1777491428293
+          modified: 1777493808157
+          isPrivate: false
+          description: ""
+          sortKey: -1776985002432
+        method: GET
+        parameters:
+          - name: titulo
+            value: Shikimori's Not
+            description: ""
+            disabled: false
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://localhost:8080/{{ _.path }}/by-year-range/2016-01-01/2023-01-01
+        name: Get Anime by Periodo Lancamento
+        meta:
+          id: req_ca3bc96019314084af2bf613c9ed0614
+          created: 1777491539509
+          modified: 1777491652314
+          isPrivate: false
+          description: ""
+          sortKey: -1776985002394.5
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.6.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+    environment:
+      path: animes
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_b6b9db77de1e4c94e50e8648542d76858151c320
+    created: 1774472030204
+    modified: 1774472030204
+environments:
+  name: Base Environment
+  meta:
+    id: env_b6b9db77de1e4c94e50e8648542d76858151c320
+    created: 1774472030199
+    modified: 1774472030199
+    isPrivate: false
