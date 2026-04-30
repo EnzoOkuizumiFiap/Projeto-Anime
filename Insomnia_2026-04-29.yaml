@@ -20,11 +20,24 @@ collection:
         meta:
           id: req_85b42346af014c23906436fe0637a1af
           created: 1774472854534
-          modified: 1777414215785
+          modified: 1777515228577
           isPrivate: false
           description: ""
           sortKey: -1776984893058
         method: GET
+        parameters:
+          - name: size
+            value: "3"
+            description: ""
+            disabled: false
+          - name: page
+            value: "3"
+            description: ""
+            disabled: false
+          - name: sort
+            value: animeId
+            description: ""
+            disabled: false
         headers:
           - name: User-Agent
             value: insomnia/12.4.0
@@ -104,16 +117,21 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://localhost:8080/{{ _.path }}/anime/1
+      - url: http://localhost:8080/{{ _.path }}/anime
         name: Get Personagens by Anime Id
         meta:
           id: req_7e211e155c1e457faa42c2c236b2a702
           created: 1774532088553
-          modified: 1777414219968
+          modified: 1777516027907
           isPrivate: false
           description: ""
           sortKey: -1776984892858
         method: GET
+        parameters:
+          - name: animeId
+            value: "5"
+            description: ""
+            disabled: false
         headers:
           - name: User-Agent
             value: insomnia/12.4.0
@@ -127,12 +145,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://localhost:8080/{{ _.path }}/1
+      - url: http://localhost:8080/{{ _.path }}/5
         name: Get Personagens by Id
         meta:
           id: req_5df9203cfad447aabd3fd4d20d531505
           created: 1774553701520
-          modified: 1777414211601
+          modified: 1777515928866
           isPrivate: false
           description: ""
           sortKey: -1776984892958
@@ -178,14 +196,14 @@ collection:
         meta:
           id: req_bf25ccc77c01402a857fefacec8b533d
           created: 1777492089925
-          modified: 1777494137706
+          modified: 1777516055464
           isPrivate: false
           description: ""
           sortKey: -1776984892833
         method: GET
         parameters:
           - name: nome
-            value: Micchon Shikimori
+            value: Shikimori
             description: ""
             disabled: false
         headers:
@@ -248,11 +266,20 @@ collection:
         meta:
           id: req_5c19157aeb1548c3ba4e2e982f4ddc5f
           created: 1774472104272
-          modified: 1777414151894
+          modified: 1777516446737
           isPrivate: false
           description: ""
           sortKey: -1776985002507
         method: GET
+        parameters:
+          - name: size
+            value: "4"
+            description: ""
+            disabled: false
+          - name: sort
+            value: lancamento
+            description: ""
+            disabled: false
         headers:
           - name: User-Agent
             value: insomnia/12.4.0
@@ -323,12 +350,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://localhost:8080/{{ _.path }}/1
+      - url: http://localhost:8080/{{ _.path }}/2
         name: Get Temporada by Id
         meta:
           id: req_49315615060b46418f0370aa584748ea
           created: 1774556998236
-          modified: 1777414155420
+          modified: 1777516575371
           isPrivate: false
           description: ""
           sortKey: -1776985002457
@@ -346,12 +373,12 @@ collection:
             send: true
             store: true
           rebuildPath: true
-      - url: http://localhost:8080/{{ _.path }}/by-anime/1
+      - url: http://localhost:8080/{{ _.path }}/by-anime/17
         name: Get All Temporada by Anime Id
         meta:
           id: req_4c4c93cafaa24670904bb97918591f38
           created: 1777491698223
-          modified: 1777492404093
+          modified: 1777516537580
           isPrivate: false
           description: ""
           sortKey: -1776985002482
@@ -382,11 +409,24 @@ collection:
         meta:
           id: req_131db2e2f10f4a5d8d8e62a2f9234deb
           created: 1776985015539
-          modified: 1777404525982
+          modified: 1777514816588
           isPrivate: false
           description: ""
           sortKey: -1776985002507
         method: GET
+        parameters:
+          - name: page
+            value: "1"
+            description: ""
+            disabled: false
+          - name: size
+            value: "1"
+            description: ""
+            disabled: false
+          - name: sort
+            value: titulo
+            description: ""
+            disabled: false
         headers:
           - name: User-Agent
             value: insomnia/12.4.0
@@ -549,11 +589,16 @@ collection:
         meta:
           id: req_05f1acc456c341c798e0feadc22db77a
           created: 1777484147743
-          modified: 1777484190912
+          modified: 1777514938397
           isPrivate: false
           description: ""
           sortKey: -1776985002382
         method: GET
+        parameters:
+          - name: size
+            value: "3"
+            description: ""
+            disabled: false
         headers:
           - name: User-Agent
             value: insomnia/12.5.0
@@ -572,14 +617,14 @@ collection:
         meta:
           id: req_20745e738cb042b8aa8495dd8867d051
           created: 1777491428293
-          modified: 1777493808157
+          modified: 1777514861998
           isPrivate: false
           description: ""
           sortKey: -1776985002432
         method: GET
         parameters:
           - name: titulo
-            value: Shikimori's Not
+            value: Nikki
             description: ""
             disabled: false
         headers:
@@ -598,11 +643,16 @@ collection:
         meta:
           id: req_ca3bc96019314084af2bf613c9ed0614
           created: 1777491539509
-          modified: 1777491652314
+          modified: 1777514915787
           isPrivate: false
           description: ""
           sortKey: -1776985002394.5
         method: GET
+        parameters:
+          - name: size
+            value: "3"
+            description: ""
+            disabled: false
         headers:
           - name: User-Agent
             value: insomnia/11.6.1
