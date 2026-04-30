@@ -210,3 +210,15 @@ mvn spring-boot:run
 
 ### Get Temporada By Id
 ![Print da requisição GET Temporadas](docs/images/Get%20Temporada%20By%20Id.png)
+
+
+## ## Prints do projeto - Testando Validação
+
+### Validation de Anime
+![Print da requisição POST Anime](docs/images/Validation%20Anime.png)
+
+### Validation de Personagem
+![Print da requisição POST Personagem](docs/images/Validation%20Personagem.png)
+
+### Validation de Temporada
+![Print da requisição POST Temporada](docs/images/Validation%20Temporada.png)
