@@ -31,7 +31,7 @@ public record AnimeRequest(
         @NotNull
         @Size(min = 1)
         @CategoriaValidation(enumClass = Categoria.class)
-        List<String> categoria,
+        List<Categoria> categoria,
 
         List<Personagem> personagens,
 
@@ -42,7 +42,7 @@ public record AnimeRequest(
                 .titulo(titulo)
                 .descricao(descricao)
                 .lancamento(lancamento)
-                .categoria(categoria.stream().map(c -> Categoria.valueOf(c.toUpperCase())).toList())
+                .categoria(categoria)
                 .personagens(isNull(personagens)? new ArrayList<>() : personagens)
                 .temporadas(isNull(temporadas)? new ArrayList<>() : temporadas)
                 .build();
