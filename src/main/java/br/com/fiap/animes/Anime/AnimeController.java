@@ -12,7 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.PagedModel;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -130,8 +130,10 @@ public class AnimeController {
             @ApiResponse(responseCode = "201", description = "Anime cadastrado com sucesso"),
             @ApiResponse(responseCode = "400", description = "Dados inválidos")
     })
-    public EntityModel<AnimeResponse> create(@RequestBody @Valid AnimeRequest animeRequest) {
-        return EntityModel.of();
+    public ResponseEntity<EntityModel<AnimeResponse>> create(@RequestBody @Valid AnimeRequest animeRequest) {
+        AnimeResponse anime = AnimeResponse.fromEntity(service.create(animeRequest));
+        var selfLink = linkTo(methodOn(AnimeController.class).findById(anime.id()));
+        return ResponseEntity.created(selfLink.toUri()).body(EntityModel.of(anime, selfLink.withSelfRel().withTitle("Anime details")));
     }
 
     @PutMapping("{id}")
@@ -145,7 +147,8 @@ public class AnimeController {
             @ApiResponse(responseCode = "404", description = "Anime não encontrado")
     })
     public EntityModel<AnimeResponse> update(@PathVariable Long id, @RequestBody @Valid AnimeRequest animeRequest) {
-        return EntityModel.ok(AnimeResponse.fromEntity(service.update(id, animeRequest)));
+        AnimeResponse anime = AnimeResponse.fromEntity(service.update(id, animeRequest));
+        return EntityModel.of(anime, linkTo(methodOn(AnimeController.class).findById(anime.id())).withSelfRel());
     }
 
     @DeleteMapping("{id}")
@@ -157,8 +160,8 @@ public class AnimeController {
             @ApiResponse(responseCode = "204", description = "Anime removido com sucesso"),
             @ApiResponse(responseCode = "404", description = "Anime não encontrado")
     })
-    public EntityModel<Void> delete(@PathVariable Long id) {
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
-        return EntityModel.noContent().build();
+        return ResponseEntity.noContent().build();
     }
 }
