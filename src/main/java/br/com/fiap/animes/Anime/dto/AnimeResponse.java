@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public record AnimeResponse(
+    Long id,
     String titulo,
     String descricao,
     LocalDate lancamento,
@@ -20,6 +21,7 @@ public record AnimeResponse(
 ) {
     public static AnimeResponse fromEntity(Anime anime) {
         return new AnimeResponse(
+                anime.getId(),
                 anime.getTitulo(),
                 anime.getDescricao(),
                 anime.getLancamento(),
