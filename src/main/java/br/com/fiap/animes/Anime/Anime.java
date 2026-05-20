@@ -45,12 +45,4 @@ public class Anime {
 
     @OneToMany(mappedBy = "anime", cascade = CascadeType.ALL)
     private List<Temporada> temporadas;
-
-//    public EntityModel<Anime> toEntityModel(){
-//        var linkAllAnimes = linkTo(methodOn(AnimeController.class).findAll(null, null)).withRel("all-animes").withTitle("All animes");
-//        var linkSelf = linkTo(methodOn(AnimeController.class).findById(id)).withSelfRel().withTitle("Anime details");
-//        var linkTitle = linkTo(methodOn(AnimeController.class).findAllByTitle(titulo, null, null)).withRel("close-title").withTitle("Close titles");
-//
-//        return EntityModel.of(this, linkSelf, linkAllAnimes, linkTitle);
-//    }
 }
