@@ -66,7 +66,6 @@ public class AnimeService {
         animeRepository.deleteById(id);
     }
 
-    @Cacheable
     private Anime findAnimeById(Long id) {
         return animeRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime com id " + id + " não encontrado." ));
     }
