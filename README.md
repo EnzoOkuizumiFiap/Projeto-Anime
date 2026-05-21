@@ -202,8 +202,8 @@ mvn spring-boot:run
 
 ---
 
-### Inserindo os Animes, Personagens e Temporadas via H2
-![Gif Inserindo Dados no H2 Console](docs/Inserindo%20Dados%20no%20H2%20Console.gif)
+### Testando no Swagger os Endpoints GET de Animes, Personagens e Temporadas
+<video src="docs/Testando%20Swagger%20Projeto%20Anime.mp4" controls width="100%"></video>
 
 ---
 
