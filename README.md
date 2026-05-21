@@ -1,4 +1,4 @@
-# Checkpoint 1 - Projeto Anime
+# Checkpoint - Projeto Anime
 
 ## Descrição
 API REST desenvolvida em Spring Boot para o gerenciamento de um catálogo de animes, personagens e temporadas. A aplicação permite o gerenciamento completo de informações sobre obras, personagens e temporadas, incluindo filtros avançados, paginação e validações customizadas.
