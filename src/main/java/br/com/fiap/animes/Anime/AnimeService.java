@@ -43,7 +43,6 @@ public class AnimeService {
         return animeRepository.findDistinctByLancamentoBetween(from, to, pageable);
     }
 
-    @Cacheable(value = "animes", key = "#id")
     public Anime findById(Long id) {
         return findAnimeById(id);
     }
@@ -67,6 +66,7 @@ public class AnimeService {
         animeRepository.deleteById(id);
     }
 
+    @Cacheable
     private Anime findAnimeById(Long id) {
         return animeRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime com id " + id + " não encontrado." ));
     }

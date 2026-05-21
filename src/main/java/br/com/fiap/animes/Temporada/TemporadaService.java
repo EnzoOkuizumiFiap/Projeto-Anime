@@ -57,11 +57,13 @@ public class TemporadaService {
         temporadaRepository.deleteById(id);
     }
 
+    @Cacheable
     private Temporada findTemporadaById(Long id) {
         return temporadaRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Temporada com id " + id + " não encontrada"));
     }
 
+    @Cacheable
     private Anime findAnimeById(Long id) {
         return animeRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime com id " + id + " não encontrado"));

@@ -64,11 +64,13 @@ public class PersonagemService {
         personagemRepository.deleteById(id);
     }
 
+    @Cacheable
     private Personagem findPersonagemById(Long id) {
         return personagemRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Personagem com id " + id + " não encontrado"));
     }
 
+    @Cacheable
     private Anime findAnimeById(Long id) {
         return animeRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Anime com id " + id + " não encontrado"));
